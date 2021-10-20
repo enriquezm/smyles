@@ -1,10 +1,30 @@
+import Draggable from 'react-draggable';
+import { X } from 'react-feather';
+
 import styles from './window.module.scss';
 
-function Window(props) {
+const Window = (props) => {
+  const handleClick = (e) => {
+    const buttonElement = e.target.parentNode;
+    console.log(buttonElement);
+    const nodeId = buttonElement.dataset.id;
+    const containerElement = document.getElementById(nodeId);
+    console.log(containerElement);
+    containerElement.remove();
+  }
+
   return (
-    <div className={styles.container}>
+    <Draggable>
+    <div id={props.id} className={styles.container}>
         <header className={styles.container__header}>
           <h2 className={styles.container__title}>{props.title}</h2>
+          <button 
+            className={styles.container__exitButton}
+            onClick={handleClick}
+            data-id={props.id}
+          >
+            <X size={16} />
+          </button>
         </header>
         <div className={styles.container__content}>
           <p>
@@ -15,6 +35,7 @@ function Window(props) {
           </p>
         </div>
       </div>
+    </Draggable>
   );
 }
 
