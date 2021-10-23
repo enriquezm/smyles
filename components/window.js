@@ -81,8 +81,7 @@ const Window = (props) => {
       <Container id={props.id}>
         <Header>
           <Title>{props.title}</Title>
-          <ExitButton 
-            onClick={handleClick}
+          <ExitButton
             data-id={props.id}
           >
             <X size={16} />
