@@ -8,12 +8,10 @@ function HomePage() {
     <div>
       <Window
         id={aboutMeId}
-        title="test.txt" 
-      />
-      <Window
-        id={uuid4()}
-        title="about_me.txt"
-      />
+        title="README.txt" 
+      >
+        <p>Hey! My name is Myles.</p>
+      </Window>
     </div>);
 }
 

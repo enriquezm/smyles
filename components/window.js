@@ -1,40 +1,97 @@
 import Draggable from 'react-draggable';
 import { X } from 'react-feather';
+import styled from 'styled-components';
 
-import styles from './window.module.scss';
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 6px solid black;
+  max-width: 500px;
+  max-height: 300px;
+`;
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #a4ffd9;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  border-bottom: 6px solid black;
+  cursor: grab;
+  padding: 4px;
+`;
+
+const Title = styled.h2`
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+`;
+
+const ExitButton = styled.button`
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+`;
+
+const Content = styled.div`
+  width: 100%;
+  padding: 8px;
+  overflow-y: scroll;
+  background-color: #fff;
+
+  &::-webkit-scrollbar {
+    background-color: #fff;
+    border-left: 6px solid black;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #000;
+  }
+
+  &::-webkit-scrollbar-button {
+    background-color: #000;
+  }
+
+  // TODO: abstract out into token
+  p {
+    font-size: 14px;
+    line-height: 19px;
+  }
+`;
 
 const Window = (props) => {
   const handleClick = (e) => {
     const buttonElement = e.target.parentNode;
-    console.log(buttonElement);
     const nodeId = buttonElement.dataset.id;
     const containerElement = document.getElementById(nodeId);
-    console.log(containerElement);
     containerElement.remove();
   }
 
   return (
-    <Draggable>
-    <div id={props.id} className={styles.container}>
-        <header className={styles.container__header}>
-          <h2 className={styles.container__title}>{props.title}</h2>
-          <button 
-            className={styles.container__exitButton}
+    <Draggable
+      bounds="body"
+      positionOffset={{x: '50%', y: '50%'}}
+    >
+      <Container id={props.id}>
+        <Header>
+          <Title>{props.title}</Title>
+          <ExitButton 
             onClick={handleClick}
             data-id={props.id}
           >
             <X size={16} />
-          </button>
-        </header>
-        <div className={styles.container__content}>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed maximus vitae nisi nec efficitur. Vivamus mi elit, ornare sit amet nulla ut, mattis tincidunt quam. Sed a blandit ex, et imperdiet lorem. Proin sollicitudin tempus metus, et feugiat dolor tincidunt eu. Phasellus laoreet sit amet nulla eu volutpat. Quisque elit diam, tristique eu volutpat nec, euismod vitae urna. Sed facilisis vel mauris ac tempus. Suspendisse sollicitudin felis molestie commodo elementum. Sed aliquet gravida libero. Ut mauris tellus, eleifend vel mauris vel, hendrerit bibendum ipsum.
-          </p>
-          <p>
-            Donec vitae maximus ex, eu efficitur velit. Aenean suscipit pellentesque eleifend. In condimentum non urna sit amet venenatis. Aenean viverra erat vestibulum, posuere erat eget, vehicula purus. Sed rhoncus consequat metus in fermentum. Cras in ullamcorper justo, sit amet convallis lectus. Nam mattis, sapien ut tempus dictum, felis lectus rhoncus nibh, non ullamcorper ante neque non neque. Integer et tristique neque, quis venenatis est. In non mollis arcu, id ullamcorper diam. Quisque ornare eros lorem, eu pretium felis ultrices in. Maecenas efficitur ligula urna, nec pretium dolor blandit in. Duis lobortis velit aliquam, rhoncus erat nec, ultricies lectus. Nam vel dui tincidunt, molestie tortor quis, vestibulum purus. Integer sed malesuada est. Cras pharetra, sapien at dictum blandit, massa ex condimentum ante, ac euismod ex leo eget velit.
-          </p>
-        </div>
-      </div>
+          </ExitButton>
+        </Header>
+        <Content> 
+          { props.children }
+        </Content>
+      </Container>
     </Draggable>
   );
 }
