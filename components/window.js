@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Draggable from 'react-draggable';
 import { X } from 'react-feather';
 import styled from 'styled-components';
+import { color } from '../theme';
 
 const borderWidth = props => props.theme.border.md;
 
@@ -19,7 +20,7 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${props => props.theme.color.purple};
+  background-color: ${color.blue};
   width: 100%;
   position: sticky;
   top: 0;
@@ -34,7 +35,7 @@ const Title = styled.h2`
   margin-top: 0;
   margin-bottom: 0;
   padding: 0;
-  color: ${props => props.theme.color.white};
+  color: ${color.black};
 `;
 
 const ExitButton = styled.button`
