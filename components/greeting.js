@@ -1,16 +1,14 @@
 import Emoji from './emoji';
 import styled from 'styled-components';
-import { useState } from 'react';
 
 const Container = styled.span`
   margin: 0;
 `;
 
 const Greeting = () => {
-  const [greeting, setGreeting] = useState('hey there!');
-
   let emoji = <Emoji symbol="👋" label="waving hand"/>;
 
+  let greeting = 'hey there!';
   const currentTime = new Date();
 
   const startMorning = new Date();
@@ -23,13 +21,13 @@ const Greeting = () => {
   startEvening.setHours(17, 0, 0); 
 
   if (currentTime >= startMorning &&  currentTime < startAfternoon ) {
-    setGreeting('good morning');
+    greeting = 'good morning';
     emoji = <Emoji symbol="☕" label="coffee"/>
   } else if (currentTime >= startAfternoon && currentTime < startEvening  ) {
-    setGreeting('good afternoon');
-    emoji = <Emoji symbol="🍛" label="curry rice"/>
+    greeting = 'good afternoon';
+    emoji = <Emoji symbol="✌️" label="peace hand"/>
   } else {
-    setGreeting('good evening');
+    greeting = 'good evening';
     emoji = <Emoji symbol="😴" label="sleeping face"/>
   }
 
