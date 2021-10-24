@@ -6,10 +6,10 @@ const Container = styled.span`
 `;
 
 const Greeting = () => {
-  let emoji = <Emoji symbol="🐑" label="sheep"/>;
+  let emoji = <Emoji symbol="👋" label="waving hand"/>;
 
-  let greeting = 'evening';
-  const currentTime = Date();
+  let greeting = 'hey there!';
+  const currentTime = new Date();
 
   const startMorning = new Date();
   startMorning.setHours(5,0,0);
@@ -21,17 +21,17 @@ const Greeting = () => {
   startEvening.setHours(17, 0, 0); 
 
   if (currentTime >= startMorning &&  currentTime < startAfternoon ) {
-    greeting = 'morning';
+    greeting = 'good morning';
     emoji = <Emoji symbol="☕" label="coffee"/>
   } else if (currentTime >= startAfternoon && currentTime < startEvening  ) {
-    greeting = 'afternoon';
+    greeting = 'good afternoon';
     emoji = <Emoji symbol="🍛" label="curry rice"/>
   } else {
-    greeting = 'evening';
+    greeting = 'good evening';
     emoji = <Emoji symbol="😴" label="sleeping face"/>
   }
 
-  return (<Container>good {greeting} {emoji}.</Container>);
+  return (<Container>{greeting} {emoji}.</Container>);
 };
 
 export default Greeting;
