@@ -5,7 +5,7 @@ import Window from '../components/window';
 import DirectoryShortcut from '../components/directoryShortcut';
 import FileShortcut from '../components/fileShortcut';
 import styled, { ThemeProvider } from 'styled-components';
-import theme from '../theme';
+import theme, { color } from '../theme';
 
 const Container = styled.div`
     display: grid;
@@ -55,9 +55,13 @@ function HomePage() {
             disabled={false}
           />
           <DirectoryShortcut 
+            title="exercises/"
+            folderColor={color.turquoise}
+          />
+          <DirectoryShortcut 
             title="projects/"
             content={posts}
-            disabled={true}
+            isDisabled={true}
           />
 
           <Window

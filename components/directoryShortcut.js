@@ -6,8 +6,12 @@ const DirectoryShortcut = (props) => {
     <Shortcut
       title={props.title}
       content={props.content}
+      isDisabled={props.isDisabled}
     >
-      <FolderIcon />
+      <FolderIcon
+        folderColor={props.folderColor}
+        isDisabled={props.isDisabled}
+      />
     </Shortcut>
   );
 };

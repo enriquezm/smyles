@@ -1,11 +1,14 @@
 const theme = {
   color: {
-    blue: '#a4ffd9',
+    blue: '#5BC0EB',
     white: '#fff',
     black: '#1F1F1F',
     black400: '#333333',
     pink: '#F46B97',
-    purple: '#A26AF1'
+    purple: '#A26AF1',
+    turquoise: '#75C9C8',
+    yellow: '#FFBE0B',
+    gray: '#666',
   },
   fontSize: {
     md: '14px',

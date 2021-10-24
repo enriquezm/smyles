@@ -1,5 +1,6 @@
 import { useState} from 'react';
 import { v4 as uuid4 } from 'uuid';
+import { color } from '../theme';
 
 import Window from './window';
 
@@ -10,12 +11,12 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: max-content;
-  cursor: pointer;
+  cursor: ${props => props.isDisabled ? 'not-allowed' : 'pointer'};
   margin-bottom: 20px;
 `;
 
 const Title = styled.p`
-  color: ${props => props.theme.color.white};
+  color: ${props => props.isDisabled ? color.gray : props.theme.color.white};
   font-size: ${props => props.theme.fontSize.md};
 `;
 
@@ -30,13 +31,15 @@ const Shortcut = (props) => {
 
   return (
     <>
-      <Container onClick={handleClick}>
+      <Container 
+        isDisabled={props.isDisabled}
+        onClick={handleClick}>
         {props.children}
-        <Title>{props.title}</Title>
+        <Title isDisabled={props.isDisabled}>{props.title}</Title>
       </Container>
 
       {
-        isClicked && <Window key={id} id={id} title={props.title}>{props.content}</Window>
+        !props.isDisabled && isClicked && <Window key={id} id={id} title={props.title}>{props.content}</Window>
       }
     </>
   );
