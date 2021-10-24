@@ -1,13 +1,17 @@
+import { useState } from 'react';
 import Draggable from 'react-draggable';
 import { X } from 'react-feather';
 import styled from 'styled-components';
 
+const borderWidth = props => props.theme.border.md;
+
 const Container = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 6px solid black;
-  max-width: 500px;
+  border: ${borderWidth} solid black;
+  width: 400px;
   max-height: 300px;
 `;
 
@@ -15,11 +19,11 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #a4ffd9;
+  background-color: ${props => props.theme.color.purple};
   width: 100%;
   position: sticky;
   top: 0;
-  border-bottom: 6px solid black;
+  border-bottom: ${borderWidth} solid black;
   cursor: grab;
   padding: 4px;
 `;
@@ -30,6 +34,7 @@ const Title = styled.h2`
   margin-top: 0;
   margin-bottom: 0;
   padding: 0;
+  color: ${props => props.theme.color.white};
 `;
 
 const ExitButton = styled.button`
@@ -47,7 +52,7 @@ const Content = styled.div`
 
   &::-webkit-scrollbar {
     background-color: #fff;
-    border-left: 6px solid black;
+    border-left: ${borderWidth} solid black;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -66,32 +71,36 @@ const Content = styled.div`
 `;
 
 const Window = (props) => {
+  const [isVisible, setIsVisible] = useState(true);
+
   const handleClick = (e) => {
-    const buttonElement = e.target.parentNode;
-    const nodeId = buttonElement.dataset.id;
-    const containerElement = document.getElementById(nodeId);
-    containerElement.remove();
+    setIsVisible(false);
   }
 
   return (
-    <Draggable
-      bounds="body"
-      positionOffset={{x: '50%', y: '50%'}}
-    >
-      <Container id={props.id}>
-        <Header>
-          <Title>{props.title}</Title>
-          <ExitButton
-            data-id={props.id}
-          >
-            <X size={16} />
-          </ExitButton>
-        </Header>
-        <Content> 
-          { props.children }
-        </Content>
-      </Container>
-    </Draggable>
+    <>
+      { isVisible &&
+        <Draggable
+          // bounds="body"
+          positionOffset={{x: '190px', y: '-50px'}}
+        >
+          <Container id={props.id}>
+            <Header>
+              <Title>{props.title}</Title>
+              <ExitButton
+                data-id={props.id}
+                onClick={handleClick}
+              >
+                <X size={16} />
+              </ExitButton>
+            </Header>
+            <Content> 
+              { props.children }
+            </Content>
+          </Container>
+        </Draggable>
+      }
+    </>
   );
 }
 

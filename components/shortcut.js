@@ -1,3 +1,8 @@
+import { useState} from 'react';
+import { v4 as uuid4 } from 'uuid';
+
+import Window from './window';
+
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -6,6 +11,7 @@ const Container = styled.div`
   align-items: center;
   width: max-content;
   cursor: pointer;
+  margin-bottom: 20px;
 `;
 
 const Title = styled.p`
@@ -14,21 +20,24 @@ const Title = styled.p`
 `;
 
 const Shortcut = (props) => {
-  let component = null;
+  const [ isClicked, setIsClicked ] = useState(false);
+  const [ id, setId ] = useState(null);
 
-  const handleClick = (e) => {
-    const id = 'testID';
-    component = true ? <Window id={id}>Test</Window> : '';
-  };
+  const handleClick = () => {
+      setIsClicked(true);
+      setId(uuid4());
+  }
 
   return (
     <>
-    <Container onClick={handleClick}>
-      {props.children}
-      <Title>{props.title}</Title>
-    </Container>
+      <Container onClick={handleClick}>
+        {props.children}
+        <Title>{props.title}</Title>
+      </Container>
 
-    {component}
+      {
+        isClicked && <Window key={id} id={id} title={props.title}>{props.content}</Window>
+      }
     </>
   );
 };

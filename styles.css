@@ -6,8 +6,13 @@
 
 body {
   font-family: 'Noto Sans Mono', monospace;
-  background-color: #5D576B;
+  background-color: #1F1F1F;
   height: 100vh;
   padding: 40px;
   margin: 0;
+  position: relative;
+}
+
+a {
+  color: #75C9C8;
 }

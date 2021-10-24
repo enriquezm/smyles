@@ -1,15 +1,15 @@
 import Shortcut from './shortcut';
-import FolderIcon from './folderIcon';
+import FileIcon from './fileIcon';
 
-const DirectoryShortcut = (props) => {
+const FileShortcut = (props) => {
   return (
     <Shortcut
       title={props.title}
       content={props.content}
     >
-      <FolderIcon />
+      <FileIcon />
     </Shortcut>
   );
 };
 
-export default DirectoryShortcut;
+export default FileShortcut;
