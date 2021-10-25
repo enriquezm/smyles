@@ -10,8 +10,11 @@ const theme = {
     yellow: '#FFBE0B',
     gray: '#666',
   },
-  fontSize: {
-    md: '14px',
+  font: {
+    size: {
+      sm: '8px',
+      md: '14px',
+    },
   },
   border: {
     md: '3px'
@@ -19,5 +22,6 @@ const theme = {
 };
 
 export const color = theme.color;
+export const font = theme.font;
 
 export default theme;

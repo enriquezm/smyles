@@ -1,6 +1,6 @@
 import { useState} from 'react';
 import { v4 as uuid4 } from 'uuid';
-import { color } from '../theme';
+import { color, font } from '../theme';
 
 import Window from './window';
 
@@ -13,11 +13,13 @@ const Container = styled.div`
   width: max-content;
   cursor: ${props => props.isDisabled ? 'not-allowed' : 'pointer'};
   margin-bottom: 20px;
+  width: 100px;
 `;
 
 const Title = styled.p`
   color: ${props => props.isDisabled ? color.gray : props.theme.color.white};
-  font-size: ${props => props.theme.fontSize.md};
+  font-size: ${font.size.md};
+  margin: 0;
 `;
 
 const Shortcut = (props) => {

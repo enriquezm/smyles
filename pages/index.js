@@ -1,30 +1,35 @@
 import { v4 as uuid4 } from 'uuid';
 import Head from 'next/head';
 import NavBar from '../components/navBar';
+import Footer from '../components/footer';
 import Window from '../components/window';
+import WelcomeWindow from '../components/welcomeWindow';
 import DirectoryShortcut from '../components/directoryShortcut';
 import FileShortcut from '../components/fileShortcut';
 import styled, { ThemeProvider } from 'styled-components';
 import theme, { color } from '../theme';
+import { getSortedSprintsData } from '../lib/sprints'
+import { getSortedProjectsData } from '../lib/projects';
+
+export async function getStaticProps() {
+  const allSprintsData = getSortedSprintsData();
+  const allProjectsData = getSortedProjectsData();
+
+  return {
+    props: {
+      allSprintsData,
+      allProjectsData
+    }
+  }
+}
 
 const Container = styled.div`
     display: grid;
     gap: 24px;
 `;
 
-function HomePage() {
+export default function HomePage({ allSprintsData, allProjectsData }) {
   const aboutMeId = uuid4();
-
-  const mockPostsData = [
-    {
-      title: 'Building this site',
-      url: '#'
-    },
-    {
-      title: 'Thinking in components',
-      url: '#'
-    }
-  ];
 
   const mockAboutMeData = {
     content:
@@ -36,9 +41,13 @@ function HomePage() {
       </>
   };
 
-  const posts = mockPostsData.map((post) => {
-    return <li key={post.title}><a href={post.url}>{post.title}</a></li>;
-  })
+  const projects = allProjectsData.map(({id, title, date}) => (
+    <li key={id}>{title} {date}</li>
+  ));
+
+  const sprints = allSprintsData.map(({id, title, date}) => (
+    <li key={id}>{title} {date}</li>
+  ));
 
   return (
     <>
@@ -55,40 +64,19 @@ function HomePage() {
             disabled={false}
           />
           <DirectoryShortcut 
-            title="exercises/"
+            title="sprints/"
             folderColor={color.turquoise}
+            content={sprints}
           />
           <DirectoryShortcut 
             title="projects/"
-            content={posts}
-            isDisabled={true}
+            content={projects}
+            // isDisabled={true}
           />
-
-          <Window
-            key={aboutMeId}
-            id={aboutMeId}
-            title="welcome.txt" 
-          >
-            <p>Hey! Welcome to smyles.net</p>
-            <p>Wondering wtf this site is about? It's my place on the web to dump my thoughts/ideas/experiments.</p>
-            <p>Building interfaces that convert, and are user friendly is great, don't get me wrong, but I also enjoy building shit just for the sake of building. With no rules, no constraints, no boundaries, it's just a lot more fun. Obviously, that's mostly through personal probjects, which is what you'll see here on smyles.net.</p>
-            <p>Anyways! On the left you'll find some shortcuts to my content. Have fun and take a look around.</p>
-            <p>Who knows, maybe you'll find some easter eggs around here...</p>
-          </Window>
-          {/* 
-
-          <Window
-            id="123"
-            title="posts/" 
-          >
-            <ul>
-              {posts}
-            </ul>
-          </Window> */}
+          <WelcomeWindow />  
         </div>
+        <Footer />
       </ThemeProvider>
     </>
   );
 }
-
-export default HomePage;

@@ -17,8 +17,8 @@ const Paper = styled.path`
 const FolderIcon = (props) => {
   return (
     <Container
-      width="100" 
-      height="78" 
+      width="50" 
+      height="50" 
       viewBox="0 0 100 78" 
       fill="none"
     >

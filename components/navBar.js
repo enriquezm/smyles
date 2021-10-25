@@ -1,7 +1,5 @@
-import Link from 'next/link';
-import { GitHub } from 'react-feather';
 import styled from 'styled-components';
-import { color } from '../theme';
+import { color, font } from '../theme';
 import Greeting from './greeting';
 
 const Container = styled.div`
@@ -11,8 +9,13 @@ const Container = styled.div`
   color: ${color.white};
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   gap: 16px;
+`;
+
+const Version = styled.p`
+  font-size: ${font.size.sm};
+  color: ${color.yellow};
 `;
 
 const NavBar = () => {
@@ -20,9 +23,7 @@ const NavBar = () => {
   return (
     <Container>
       <Greeting />
-      <Link href="https://github.com/enriquezm">
-        <a><GitHub /></a>
-      </Link>
+      <Version>(Running ver1.0.0)</Version>
     </Container>
   );
 };
