@@ -64,14 +64,15 @@ export default function HomePage({ allSprintsData, allProjectsData }) {
             disabled={false}
           />
           <DirectoryShortcut 
-            title="sprints/"
+            title="bits"
             folderColor={color.turquoise}
             content={sprints}
+            isDisabled={true}
           />
           <DirectoryShortcut 
-            title="projects/"
+            title="projects"
             content={projects}
-            // isDisabled={true}
+            isDisabled={true}
           />
           <WelcomeWindow />  
         </div>
