@@ -4,10 +4,22 @@ import matter from 'gray-matter'
 
 const sprintsDirectory = path.join(process.cwd(), 'sprints')
 
+interface DataObject {
+  [key: string]: any;
+}
+
+interface MatterData {
+  content: string;
+  data: DataObject;
+  isEmpty?: boolean;
+  excerpt?: string;
+
+}
+
 export function getSortedSprintsData() {
   // Get file names under /posts
   const fileNames = fs.readdirSync(sprintsDirectory)
-  const allSprintsData = fileNames.map(fileName => {
+  const allSprintsData: any = fileNames.map(fileName => {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, '')
 
@@ -16,7 +28,7 @@ export function getSortedSprintsData() {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
     // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents)
+    const matterResult: MatterData = matter(fileContents)
 
     // Combine the data with the id
     return {

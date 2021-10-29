@@ -98,7 +98,6 @@ const Window = (props) => {
             <Header>
               <Title>{props.title}</Title>
               <ExitButton
-                data-id={props.id}
                 onClick={handleClick}
               >
                 <X size={16} />

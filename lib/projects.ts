@@ -4,26 +4,38 @@ import matter from 'gray-matter';
 
 const projectsDirectory = path.join(process.cwd(), 'projects');
 
+interface DataObject {
+  [key: string]: any;
+}
+
+interface MatterData {
+  content: string;
+  data: DataObject;
+  isEmpty?: boolean;
+  excerpt?: string;
+
+}
+
 export function getSortedProjectsData() {
   // Get file names under /posts
-  const fileNames = fs.readdirSync(projectsDirectory)
-  const allProjectsData = fileNames.map(fileName => {
+  const fileNames = fs.readdirSync(projectsDirectory);
+  const allProjectsData: any = fileNames.map(fileName => {
     // Remove ".md" from file name to get id
-    const id = fileName.replace(/\.md$/, '')
+    const id = fileName.replace(/\.md$/, '');
 
     // Read markdown file as string
-    const fullPath = path.join(projectsDirectory, fileName)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
+    const fullPath = path.join(projectsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
 
     // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents)
+    const matterResult: MatterData = matter(fileContents);
 
     // Combine the data with the id
     return {
       id,
       ...matterResult.data
     }
-  })
+  });
   // Sort posts by date
   return allProjectsData.sort(({ date: a }, { date: b }) => {
     if (a < b) {
@@ -33,5 +45,5 @@ export function getSortedProjectsData() {
     } else {
       return 0
     }
-  })
+  });
 }
