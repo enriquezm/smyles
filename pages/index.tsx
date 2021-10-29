@@ -1,11 +1,12 @@
 import { v4 as uuid4 } from 'uuid';
+import { useState } from 'react';
 import Head from 'next/head';
 import NavBar from '../components/navBar';
 import Footer from '../components/footer';
-import Window from '../components/window';
 import WelcomeWindow from '../components/welcomeWindow';
 import DirectoryShortcut from '../components/directoryShortcut';
 import FileShortcut from '../components/fileShortcut';
+import GithubOutclickShortcut from '../components/githubOutclickShortcut';
 import styled, { ThemeProvider } from 'styled-components';
 import theme, { color } from '../theme';
 import { getSortedSprintsData } from '../lib/sprints'
@@ -29,8 +30,6 @@ const Container = styled.div`
 `;
 
 export default function HomePage({ allSprintsData, allProjectsData }) {
-  const aboutMeId = uuid4();
-
   const mockAboutMeData = {
     content:
       <>
@@ -46,36 +45,38 @@ export default function HomePage({ allSprintsData, allProjectsData }) {
   ));
 
   const sprints = allSprintsData.map(({id, title, date}) => (
-    <li key={id}>{title} {date}</li>
+    <FileShortcut
+      colorOverride={color.black} 
+      key={id} 
+      title={title} 
+      content={`Some data: ${title} ${date}`}
+    />
   ));
 
   return (
     <>
       <Head>
-        <title key="title">smyles.net</title>
+        <title key="title">That Guy That Codes</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
         <NavBar />
-        <div>
-          <FileShortcut 
-            title="about_me.txt"
-            content={mockAboutMeData.content}
-            disabled={false}
-          />
-          <DirectoryShortcut 
-            title="bits"
-            folderColor={color.turquoise}
-            content={sprints}
-            isDisabled={true}
-          />
-          <DirectoryShortcut 
-            title="projects"
-            content={projects}
-            isDisabled={true}
-          />
-          <WelcomeWindow />  
-        </div>
+        <FileShortcut title="about_me.txt" content={mockAboutMeData.content}/>
+        <DirectoryShortcut 
+          title="bits"
+          folderColor={color.turquoise}
+          content={sprints}
+          isDisabled={true}
+        />
+        <DirectoryShortcut 
+          title="projects"
+          content={projects}
+          isDisabled={true}
+        />
+        <GithubOutclickShortcut
+          title="github"
+        />
+        <WelcomeWindow />
         <Footer />
       </ThemeProvider>
     </>

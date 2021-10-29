@@ -82,8 +82,8 @@ const Window = (props) => {
     <>
       { isVisible &&
         <Draggable
-          // bounds="body"
-          positionOffset={{x: '100%', y: '-100%'}}
+          bounds="body"
+          defaultPosition={{x: 150, y: -150}}
         >
           <Container id={props.id}>
             <Header>

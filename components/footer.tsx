@@ -1,5 +1,5 @@
 import Emoji from './emoji';
-import { GitHub } from 'react-feather';
+import { GitHub, Linkedin } from 'react-feather';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { color, font } from '../theme';
@@ -19,6 +19,8 @@ const Container = styled.footer`
 `;
 
 const Tray = styled.span`
+  display: flex;
+  gap: 8px;
   padding: 4px;
   font-size: ${font.size.sm};
 `;
@@ -26,10 +28,13 @@ const Tray = styled.span`
 const Footer = () => {
   return (
     <Container>
-      <span>Made with <Emoji symbol="☕"/> {`&`} <Emoji symbol="💜"/> by myles</span>
+      <span>Made with <Emoji symbol="☕"/> {`&`} <Emoji symbol="💜"/> by <Link href="https://www.linkedin.com/in/mylesenriquez/"><a>myles</a></Link></span>
       <Tray>
         <Link href="https://github.com/enriquezm">
           <a><GitHub size={12}/></a>
+        </Link>
+        <Link href="https://www.linkedin.com/in/mylesenriquez/">
+          <a><Linkedin size={12}/></a>
         </Link>
       </Tray>
     </Container>

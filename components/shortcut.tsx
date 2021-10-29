@@ -17,7 +17,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.p`
-  color: ${props => props.isDisabled ? color.gray : props.theme.color.white};
+  color: ${props => props.isDisabled ? color.gray : (props.colorOverride ? props.colorOverride : color.white)};
   font-size: ${font.size.md};
   margin: 0;
 `;
@@ -37,7 +37,10 @@ const Shortcut = (props) => {
         isDisabled={props.isDisabled}
         onClick={handleClick}>
         {props.children}
-        <Title isDisabled={props.isDisabled}>{props.title}</Title>
+        <Title 
+          isDisabled={props.isDisabled}
+          colorOverride={props.colorOverride}
+        >{props.title}</Title>
       </Container>
 
       {
