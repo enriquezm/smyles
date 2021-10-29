@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { Context } from './store';
 import Draggable from 'react-draggable';
 import { X } from 'react-feather';
 import styled from 'styled-components';
@@ -73,9 +74,17 @@ const Content = styled.div`
 
 const Window = (props) => {
   const [isVisible, setIsVisible] = useState(true);
+  const [activeWindows, setActiveWindows] = useContext(Context);
+  const id = props.id;
 
   const handleClick = (e) => {
     setIsVisible(false);
+
+    const updatedState = {
+      [id]: false
+    }
+
+    setActiveWindows(updatedState);
   }
 
   return (

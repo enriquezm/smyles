@@ -1,4 +1,5 @@
-import { useState} from 'react';
+import { Context } from './store';
+import { useState, useContext } from 'react';
 import { v4 as uuid4 } from 'uuid';
 import { color, font } from '../theme';
 
@@ -24,16 +25,24 @@ const Title = styled.p`
 
 const Shortcut = (props) => {
   const [ isClicked, setIsClicked ] = useState(false);
-  const [ id, setId ] = useState(null);
+  const [ keyId, setkeyId ] = useState(null);
+  const [ activeWindows, setActiveWindows ] = useContext(Context);
+  const id = props.id;
 
   const handleClick = () => {
       setIsClicked(true);
-      setId(uuid4());
+      setkeyId(uuid4());
+
+      const updatedState = {
+        [id]: true
+      }
+
+      setActiveWindows(updatedState);
   }
 
   return (
     <>
-      <Container 
+      <Container
         isDisabled={props.isDisabled}
         onClick={handleClick}>
         {props.children}
@@ -44,7 +53,7 @@ const Shortcut = (props) => {
       </Container>
 
       {
-        !props.isDisabled && isClicked && <Window key={id} id={id} title={props.title}>{props.content}</Window>
+        !props.isDisabled && isClicked && <Window key={keyId} id={id} title={props.title}>{props.content}</Window>
       }
     </>
   );

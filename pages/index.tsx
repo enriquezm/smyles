@@ -1,6 +1,5 @@
-import { v4 as uuid4 } from 'uuid';
-import { useState } from 'react';
 import Head from 'next/head';
+import Store from '../components/store';
 import NavBar from '../components/navBar';
 import Footer from '../components/footer';
 import WelcomeWindow from '../components/welcomeWindow';
@@ -60,24 +59,30 @@ export default function HomePage({ allSprintsData, allProjectsData }) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
-        <NavBar />
-        <FileShortcut title="about_me.txt" content={mockAboutMeData.content}/>
-        <DirectoryShortcut 
-          title="bits"
-          folderColor={color.turquoise}
-          content={sprints}
-          isDisabled={true}
-        />
-        <DirectoryShortcut 
-          title="projects"
-          content={projects}
-          isDisabled={true}
-        />
-        <GithubOutclickShortcut
-          title="github"
-        />
-        <WelcomeWindow />
-        <Footer />
+        <Store>
+          <NavBar />
+          <FileShortcut
+            id="about"
+            title="about_me.txt" 
+            content={mockAboutMeData.content}
+          />
+          <DirectoryShortcut 
+            title="bits"
+            folderColor={color.turquoise}
+            content={sprints}
+            isDisabled={true}
+          />
+          <DirectoryShortcut 
+            title="projects"
+            content={projects}
+            isDisabled={true}
+          />
+          <GithubOutclickShortcut
+            title="github"
+          />
+          <WelcomeWindow />
+          <Footer />
+        </Store>
       </ThemeProvider>
     </>
   );
