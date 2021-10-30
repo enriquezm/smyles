@@ -1,7 +1,6 @@
-import { useContext, useState } from 'react';
-import { Context } from './store';
+import { useContext } from 'react';
+import { Context, ActiveWindow } from './store';
 import Emoji from './emoji';
-import { GitHub, Linkedin } from 'react-feather';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { color, font } from '../theme';
@@ -19,20 +18,21 @@ const Container = styled.footer`
   font-size: ${font.size.sm};
 `;
 
-const TasksContainer = styled.span`
+const ActiveWindowsTray = styled.span`
   display: flex;
 `;
 
-const ActiveTask = styled.span`
+const ActiveWindowBar = styled.span`
   display: flex;
   align-items: center;
-  color: ${color.black};
-  background-color: ${color.white};
+  color: ${color.white};
+  font-size: ${font.size.md};
+  border-bottom: 3px solid ${color.blue};
   min-width: 150px;
   padding: 0 4px;
 `;
 
-const Tray = styled.span`
+const ExtraInfoTray = styled.span`
   display: flex;
   gap: 8px;
   padding: 4px;
@@ -42,22 +42,21 @@ const Tray = styled.span`
 const Footer = () => {
   const [activeWindows, setActiveWindows] = useContext(Context);
 
+  const allActiveWindows: ActiveWindow[] = activeWindows.map((window) => (<ActiveWindowBar key={window.title}>{window.title}</ActiveWindowBar>));
+
   return (
     <Container>
-      {/* <span>Made with <Emoji symbol="☕"/> {`&`} <Emoji symbol="💜"/> by <Link href={state.links.linkedin}><a>{state.site.name}</a></Link></span> */}
-      <TasksContainer>
-        {
-          activeWindows.about && <ActiveTask>about_me.txt</ActiveTask>
-        }
-      </TasksContainer>
-      <Tray>
-        <Link href="https://github.com/enriquezm">
-          <a><GitHub size={12}/></a>
-        </Link>
-        <Link href="https://www.linkedin.com/in/mylesenriquez/">
-          <a><Linkedin size={12}/></a>
-        </Link>
-      </Tray>
+      <ActiveWindowsTray>
+        { allActiveWindows }
+      </ActiveWindowsTray>
+      <ExtraInfoTray>
+          Made with <Emoji symbol="☕"/> {`&`} <Emoji symbol="💜"/> by 
+          <Link href="https://www.linkedin.com/in/mylesenriquez/">
+            <a>
+              Myles Enriquez
+            </a>
+          </Link>
+      </ExtraInfoTray>
     </Container>
   );
 };

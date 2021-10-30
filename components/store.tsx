@@ -10,9 +10,15 @@ const initialGlobalState = {
   }
 };
 
-const initialActiveWindows = {
-  about: false
-};
+export interface ActiveWindow {
+  title: string;
+}
+
+const initialActiveWindows: ActiveWindow[] = [
+  {
+    title: 'welcome.txt'
+  }
+];
 
 
 export const Context = createContext(undefined);

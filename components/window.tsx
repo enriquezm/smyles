@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Context } from './store';
+import { Context, ActiveWindow } from './store';
 import Draggable from 'react-draggable';
 import { X } from 'react-feather';
 import styled from 'styled-components';
@@ -12,7 +12,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: ${borderWidth} solid black;
+  border: ${borderWidth} solid ${color.black};
   width: 400px;
   max-height: 300px;
 `;
@@ -25,7 +25,7 @@ const Header = styled.header`
   width: 100%;
   position: sticky;
   top: 0;
-  border-bottom: ${borderWidth} solid black;
+  border-bottom: ${borderWidth} solid ${color.black};
   cursor: grab;
   padding: 4px;
 `;
@@ -50,19 +50,19 @@ const Content = styled.div`
   width: 100%;
   padding: 8px;
   overflow-y: scroll;
-  background-color: #fff;
+  background-color: ${color.white};
 
   &::-webkit-scrollbar {
-    background-color: #fff;
+    background-color: ${color.white};
     border-left: ${borderWidth} solid black;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #000;
+    background-color: ${color.black};
   }
 
   &::-webkit-scrollbar-button {
-    background-color: #000;
+    background-color: ${color.black};
   }
 
   // TODO: abstract out into token
@@ -75,16 +75,12 @@ const Content = styled.div`
 const Window = (props) => {
   const [isVisible, setIsVisible] = useState(true);
   const [activeWindows, setActiveWindows] = useContext(Context);
-  const id = props.id;
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     setIsVisible(false);
 
-    const updatedState = {
-      [id]: false
-    }
-
-    setActiveWindows(updatedState);
+    const updatedActiveWindows: ActiveWindow[] = activeWindows.filter((window: ActiveWindow) => window.title !== props.title);
+    setActiveWindows(updatedActiveWindows);
   }
 
   return (
@@ -94,7 +90,7 @@ const Window = (props) => {
           bounds="body"
           defaultPosition={{x: 150, y: -150}}
         >
-          <Container id={props.id}>
+          <Container>
             <Header>
               <Title>{props.title}</Title>
               <ExitButton

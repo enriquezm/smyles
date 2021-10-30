@@ -62,7 +62,6 @@ export default function HomePage({ allSprintsData, allProjectsData }) {
         <Store>
           <NavBar />
           <FileShortcut
-            id="about"
             title="about_me.txt" 
             content={mockAboutMeData.content}
           />
