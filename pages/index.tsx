@@ -6,6 +6,7 @@ import WelcomeWindow from '../components/welcomeWindow';
 import DirectoryShortcut from '../components/directoryShortcut';
 import FileShortcut from '../components/fileShortcut';
 import GithubOutclickShortcut from '../components/githubOutclickShortcut';
+import LinkedinOutclickShortcut from '../components/linkedinOutclickShortcut';
 import styled, { ThemeProvider } from 'styled-components';
 import theme, { color } from '../theme';
 import { getSortedSprintsData } from '../lib/sprints'
@@ -76,9 +77,8 @@ export default function HomePage({ allSprintsData, allProjectsData }) {
             content={projects}
             isDisabled={true}
           />
-          <GithubOutclickShortcut
-            title="github"
-          />
+          <GithubOutclickShortcut title="github" />
+          <LinkedinOutclickShortcut title="linkedin" />
           <WelcomeWindow />
           <Footer />
         </Store>
