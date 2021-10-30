@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { color, font } from '../theme';
 import Greeting from './greeting';
+import Emoji from './emoji';
 
 const Container = styled.div`
   padding: 8px;
@@ -23,7 +24,7 @@ const NavBar = () => {
   return (
     <Container>
       <Greeting />
-      <Version>(Running ver1.0.0)</Version>
+      <Version>{`You're running ver1.1.0 `}<Emoji symbol="🎉"/></Version>
     </Container>
   );
 };
