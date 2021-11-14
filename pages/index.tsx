@@ -107,7 +107,7 @@ export default function HomePage({ allSprintsData, allProjectsData, cyberLogMess
             <GithubOutclickShortcut title="github" />
             <LinkedinOutclickShortcut title="linkedin" />
 
-            <MessageBoard cyberLogMessages={cyberLogMessages} />
+            {/* <MessageBoard cyberLogMessages={cyberLogMessages} /> */}
 
             <AllActiveWindows />
           </Desktop>
