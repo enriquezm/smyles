@@ -15,16 +15,15 @@ const Container = styled.div`
 `;
 
 const Version = styled.p`
-  font-size: ${font.size.sm};
+  font-size: ${font.size.md};
   color: ${color.yellow};
 `;
 
 const NavBar = () => {
-
   return (
     <Container>
       <Greeting />
-      <Version>{`You're running ver1.1.0 `}<Emoji symbol="🎉"/></Version>
+      <Version>{`[smyles_OS]: running ver2.0.0 `}<Emoji symbol="🎉"/></Version>
     </Container>
   );
 };

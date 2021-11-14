@@ -25,9 +25,10 @@ const ActiveWindowsTray = styled.span`
 const ActiveWindowBar = styled.span`
   display: flex;
   align-items: center;
-  color: ${color.white};
+  background-color: ${color.turquoise};
+  border: 3px solid ${color.black};
+  color: ${color.black};
   font-size: ${font.size.md};
-  border-bottom: 3px solid ${color.blue};
   min-width: 150px;
   padding: 0 4px;
 `;
@@ -40,7 +41,7 @@ const ExtraInfoTray = styled.span`
 `;
 
 const Footer = () => {
-  const [activeWindows, setActiveWindows] = useContext(Context);
+  const [activeWindows] = useContext(Context);
 
   const allActiveWindows: ActiveWindow[] = activeWindows.map((window) => (<ActiveWindowBar key={window.title}>{window.title}</ActiveWindowBar>));
 

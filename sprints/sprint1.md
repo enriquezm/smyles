@@ -1,11 +1,8 @@
 ---
-title: 'bit1.txt'
-date: '2021-10-24'
+title: 'README.txt'
+date: '2021-11-04'
 ---
 
-Next.js has two forms of pre-rendering: **Static Generation** and **Server-side Rendering**. The difference is in **when** it generates the HTML for a page.
+Bits has sort of been something I've been wanting to do. Essentially, they're small, bite-sized, challenge for devs to try out.
 
-- **Static Generation** is the pre-rendering method that generates the HTML at **build time**. The pre-rendered HTML is then _reused_ on each request.
-- **Server-side Rendering** is the pre-rendering method that generates the HTML on **each request**.
-
-Importantly, Next.js lets you **choose** which pre-rendering form to use for each page. You can create a "hybrid" Next.js app by using Static Generation for most pages and using Server-side Rendering for others.
+They're mainly targeted for people getting into programming, but anyone's welcome to try.

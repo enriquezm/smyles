@@ -13,7 +13,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   border: ${borderWidth} solid ${color.black};
-  width: 400px;
+  width: ${props => props.wide ? '600px' : '400px'};
   max-height: 300px;
 `;
 
@@ -21,7 +21,8 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${color.blue};
+  background-color: ${color.pink};
+  color: ${color.white};
   width: 100%;
   position: sticky;
   top: 0;
@@ -88,9 +89,9 @@ const Window = (props) => {
       { isVisible &&
         <Draggable
           bounds="body"
-          defaultPosition={{x: 150, y: -150}}
+          defaultPosition={{x: 300, y: 0}}
         >
-          <Container>
+          <Container wide={props.wide}>
             <Header>
               <Title>{props.title}</Title>
               <ExitButton

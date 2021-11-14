@@ -23,16 +23,14 @@ const Title = styled.p`
 `;
 
 const Shortcut = (props) => {
-  const [ isClicked, setIsClicked ] = useState(false);
-  const [ keyId, setkeyId ] = useState(null);
   const [ activeWindows, setActiveWindows ] = useContext(Context);
 
   const handleClick = () => {
-      setIsClicked(true);
-      setkeyId(uuid4());
-
       if (windowIsNotActive()) {
-        const updatedActiveWindows: ActiveWindow[] = [...activeWindows, { title: props.title}];
+        const updatedActiveWindows: ActiveWindow[] = [...activeWindows, {
+          title: props.title,
+          content: props.content,
+        }];
         setActiveWindows(updatedActiveWindows);
       }
   }
@@ -50,14 +48,14 @@ const Shortcut = (props) => {
         <Title 
           isDisabled={props.isDisabled}
           colorOverride={props.colorOverride}
-        >{props.title}</Title>
+        >{
+          props.title}
+        </Title>
       </Container>
-
-      {
-        !props.isDisabled && isClicked && <Window key={keyId} title={props.title}>{props.content}</Window>
-      }
     </>
   );
 };
 
 export default Shortcut;
+
+//content
