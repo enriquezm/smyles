@@ -13,7 +13,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   border: ${borderWidth} solid ${color.black};
-  width: ${props => props.wide ? '600px' : '400px'};
+  width: ${props => props.wide ? '800px' : '400px'};
   max-height: 300px;
 `;
 
@@ -59,7 +59,7 @@ const Content = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: ${color.black};
+    background-color: ${color.turquoise};
   }
 
   &::-webkit-scrollbar-button {

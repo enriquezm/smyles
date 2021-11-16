@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import parse from 'html-react-parser';
 import { Context, ActiveWindow } from './store';
 import Window from './window';
 

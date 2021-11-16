@@ -15,6 +15,8 @@ import AllActiveWindows from '../components/allActiveWindows';
 import { db, postToJSON } from '../lib/firebase';
 
 import { collection, getDocs, orderBy, query } from "firebase/firestore"; 
+import AboutMeContent from '../components/aboutMeWindow';
+import TerminalShortcut from '../components/terminalShortcut';
 
 export async function getStaticProps() {
   const allSprintsData = await getSortedSprintsData();
@@ -43,31 +45,13 @@ export async function getStaticProps() {
   }
 }
 
-// export async function getServerSideProps({ query }) {
-
-// }
-
 const Desktop = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
 export default function HomePage({ allSprintsData, allProjectsData, cyberLogMessages }) {
-  // querySnapshot.forEach((doc) => {
-  //   console.log(`${doc.id} => ${doc.data()}`);
-  // });
-
-  const mockAboutMeData = {
-    content:
-      <>
-        <p>Eww! I hate introductions. But if I must, I'm a frontend dev working out of Vegas.</p>
-        <p>I enjoy coffee, binge watching horror shows, and building stuff (not just software, legos are cool too).</p>
-        <p>My inspiration comes from wario ware, cartoons, web in the 90's, and 80's hacker movies. Love that shit.</p>
-        <p>Okay, can we stop with the intro now? I really have nothing else to tell ya...</p>
-      </>
-  };
-
-  const projects = allProjectsData.map(({ id, title, date }) => (
+   const projects = allProjectsData.map(({ id, title, date }) => (
     <li key={id}>{title} {date}</li>
   ));
 
@@ -92,7 +76,7 @@ export default function HomePage({ allSprintsData, allProjectsData, cyberLogMess
           <Desktop>
             <FileShortcut
               title="about_me.txt" 
-              content={mockAboutMeData.content}
+              content={<AboutMeContent/>}
             />
             <DirectoryShortcut 
               title="bits"
@@ -104,6 +88,9 @@ export default function HomePage({ allSprintsData, allProjectsData, cyberLogMess
               content={projects}
               isDisabled={true}
             />
+            {/* <TerminalShortcut
+              title="cyberGreet.exe"
+            /> */}
             <GithubOutclickShortcut title="github" />
             <LinkedinOutclickShortcut title="linkedin" />
 

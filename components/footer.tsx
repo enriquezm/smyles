@@ -16,6 +16,7 @@ const Container = styled.footer`
   color: ${color.white};
   padding: 0 40px;
   font-size: ${font.size.sm};
+  min-height: 25px;
 `;
 
 const ActiveWindowsTray = styled.span`
@@ -25,8 +26,8 @@ const ActiveWindowsTray = styled.span`
 const ActiveWindowBar = styled.span`
   display: flex;
   align-items: center;
-  background-color: ${color.turquoise};
-  border: 3px solid ${color.black};
+  background-color: ${color.pink};
+  border-right: 3px solid ${color.turquoise};
   color: ${color.black};
   font-size: ${font.size.md};
   min-width: 150px;

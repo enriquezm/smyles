@@ -1,5 +1,3 @@
-import { Context, ActiveWindow } from './store';
-import { useContext } from 'react';
 import { color, font } from '../theme';
 import styled from 'styled-components';
 
@@ -19,21 +17,10 @@ const Title = styled.p`
   margin: 0;
 `;
 
-const Shortcut = (props) => {
-  const [ activeWindows, setActiveWindows ] = useContext(Context);
-
+const ExeShortcut = (props) => {
   const handleClick = () => {
-      if (windowIsNotActive()) {
-        const updatedActiveWindows: ActiveWindow[] = [...activeWindows, {
-          title: props.title,
-          content: props.content,
-        }];
-        setActiveWindows(updatedActiveWindows);
-      }
-  }
-
-  const windowIsNotActive = (): boolean => {
-    return !activeWindows.some(window => window.title === props.title);
+    console.log('clicked');
+    // todo: update array of exe apps and enable current selected one
   }
 
   return (
@@ -53,4 +40,4 @@ const Shortcut = (props) => {
   );
 };
 
-export default Shortcut;
+export default ExeShortcut;
