@@ -1,4 +1,9 @@
-const Emoji = props => (
+type Props = {
+  label?: string;
+  symbol: React.ReactNode;
+};
+
+const Emoji = (props: Props) => (
   <span
     className="emoji"
     role="img"

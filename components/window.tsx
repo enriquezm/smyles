@@ -73,7 +73,14 @@ const Content = styled.div`
   }
 `;
 
-const Window = (props) => {
+type Props = {
+  title: string;
+  children: any;
+  id?: string;
+  wide?: boolean;
+};
+
+const Window = (props: Props) => {
   const [isVisible, setIsVisible] = useState(true);
   const [activeWindows, setActiveWindows] = useContext(Context);
 

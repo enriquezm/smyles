@@ -1,8 +1,8 @@
-import { createContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
-export interface ActiveWindow {
+export type ActiveWindow = {
   title: string;
-  content?: any;
+  content?: React.ReactNode;
 }
 
 const content = (
@@ -24,7 +24,11 @@ const initialActiveWindows: ActiveWindow[] = [
 
 export const Context = createContext(undefined);
 
-const Store = ({ children }) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+const Store = ({ children }: Props) => {
   const [activeWindows, setActiveWindows] = useState(initialActiveWindows);
 
   return (

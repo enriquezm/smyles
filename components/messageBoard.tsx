@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import styled from 'styled-components';
@@ -73,6 +73,10 @@ export interface Message {
   content: string;
 }
 
+type MessageBoardProps = {
+  cyberLogMessages: any;
+};
+
 const MessageBoard = ({cyberLogMessages}) => {
   const [messages, setMessages] = useState(cyberLogMessages);
   const [content, setContent] = useState('');
@@ -90,7 +94,7 @@ const MessageBoard = ({cyberLogMessages}) => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleOnChange = (e) => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setContent(e.target.value);
   };
 

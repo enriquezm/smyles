@@ -1,4 +1,4 @@
-import theme, { color } from '../theme';
+import theme, { color } from '../../theme';
 import styled from 'styled-components';
 
 const Container = styled.svg`
@@ -14,7 +14,12 @@ const Paper = styled.path`
   display: ${props => props.isDisabled ? 'none' : 'block'};
 `;
 
-const FolderIcon = (props) => {
+type Props = {
+  isDisabled?: boolean;
+  folderColor?: string;
+};
+
+const FolderIcon = (props: Props) => {
   return (
     <Container
       width="50" 

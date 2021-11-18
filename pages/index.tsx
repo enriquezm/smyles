@@ -4,8 +4,8 @@ import NavBar from '../components/navBar';
 import Footer from '../components/footer';
 import DirectoryShortcut from '../components/directoryShortcut';
 import FileShortcut from '../components/fileShortcut';
-import GithubOutclickShortcut from '../components/githubOutclickShortcut';
-import LinkedinOutclickShortcut from '../components/linkedinOutclickShortcut';
+import GithubOutclickShortcut from '../components/outclickShortcuts/githubOutclickShortcut';
+import LinkedinOutclickShortcut from '../components/outclickShortcuts/linkedinOutclickShortcut';
 import styled, { ThemeProvider } from 'styled-components';
 import theme, { color } from '../theme';
 import { getSortedSprintsData } from '../lib/sprints'

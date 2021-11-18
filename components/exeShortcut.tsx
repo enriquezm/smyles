@@ -17,7 +17,14 @@ const Title = styled.p`
   margin: 0;
 `;
 
-const ExeShortcut = (props) => {
+type Props = {
+  isDisabled?: boolean;
+  children: React.ReactNode;
+  colorOverride?: string;
+  title: string;
+};
+
+const ExeShortcut = (props: Props) => {
   const handleClick = () => {
     console.log('clicked');
     // todo: update array of exe apps and enable current selected one

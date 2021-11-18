@@ -1,7 +1,14 @@
 import Shortcut from './shortcut';
-import FolderIcon from './folderIcon';
+import FolderIcon from './icons/folderIcon';
 
-const DirectoryShortcut = (props) => {
+type Props = {
+  title: string;
+  content: string;
+  isDisabled?: boolean;
+  folderColor?: string;
+};
+
+const DirectoryShortcut = (props: Props) => {
   return (
     <Shortcut
       title={props.title}

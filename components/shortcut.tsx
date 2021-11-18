@@ -1,5 +1,5 @@
 import { Context, ActiveWindow } from './store';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { color, font } from '../theme';
 import styled from 'styled-components';
 
@@ -19,7 +19,15 @@ const Title = styled.p`
   margin: 0;
 `;
 
-const Shortcut = (props) => {
+type Props = {
+  title: string;
+  content: any;
+  isDisabled?: boolean;
+  children: React.ReactNode;
+  colorOverride?: string;
+};
+
+const Shortcut = (props: Props) => {
   const [ activeWindows, setActiveWindows ] = useContext(Context);
 
   const handleClick = () => {

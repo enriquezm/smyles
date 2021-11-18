@@ -1,8 +1,12 @@
-import OutclickShortcut from './outclickShortcut';
+import OutclickShortcut from '../outclickShortcut';
 import { Linkedin } from 'react-feather';
-import { color } from '../theme';
+import { color } from '../../theme';
 
-const LinkedinOutclickShortcut = (props) => {
+type Props = {
+  title: string;
+};
+
+const LinkedinOutclickShortcut = (props: Props) => {
   return (
     <OutclickShortcut title={props.title}>
       <Linkedin color={color.blue} />

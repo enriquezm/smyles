@@ -1,7 +1,12 @@
 import ExeShortcut from './exeShortcut';
-import TerminalIcon from './terminalIcon';
+import TerminalIcon from './icons/terminalIcon';
 
-const TerminalShortcut = (props) => {
+type Props = {
+  title: string;
+  colorOverride?: string;
+} 
+
+const TerminalShortcut = (props: Props) => {
   return (
     <ExeShortcut
       title={props.title}

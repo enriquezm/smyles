@@ -1,8 +1,12 @@
-import OutclickShortcut from './outclickShortcut';
+import OutclickShortcut from '../outclickShortcut';
 import { GitHub } from 'react-feather';
-import { color } from '../theme';
+import { color } from '../../theme';
 
-const GithubOutclickShortcut = (props) => {
+type Props = {
+  title: string;
+};
+
+const GithubOutclickShortcut = (props: Props) => {
   return (
     <OutclickShortcut title={props.title}>
       <GitHub color={color.purple} />

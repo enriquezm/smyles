@@ -26,21 +26,23 @@ const Title = styled.p`
   }
 `;
 
-const OutclickShortcut = (props) => {
-
-  return (
-    <>
-      <Link href="https://github.com/enriquezm">
-        <Container>
-          {props.children}
-          <Title>
-            <span>{props.title}</span>
-            <span><ExternalLink color={color.white} size={14}/></span>
-          </Title>
-        </Container>
-      </Link>
-    </>
-  );
+type Props = {
+  children: React.ReactNode;
+  title: string;
 };
+
+const OutclickShortcut = (props: Props) => (
+  <>
+    <Link href="https://github.com/enriquezm" passHref>
+      <Container>
+        {props.children}
+        <Title>
+          <span>{props.title}</span>
+          <span><ExternalLink color={color.white} size={14}/></span>
+        </Title>
+      </Container>
+    </Link>
+  </>
+);
 
 export default OutclickShortcut;
