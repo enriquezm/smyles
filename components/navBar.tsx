@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { color, font } from '../theme';
-import Greeting from './greeting';
-import Emoji from './emoji';
+import { color } from '../theme';
+import Greeting from './greeting'
 
 const Container = styled.div`
   padding: 8px;
@@ -14,16 +13,15 @@ const Container = styled.div`
   gap: 16px;
 `;
 
-const Version = styled.p`
-  font-size: ${font.size.md};
-  color: ${color.yellow};
+const Logo = styled.div`
+  font-family: 'Press Start 2P', cursive;
 `;
 
 const NavBar = () => {
   return (
     <Container>
+      <Logo>Smyles_OS</Logo>
       <Greeting />
-      <Version>{`[smyles_OS]: running ver2.0.0 `}<Emoji symbol="🎉"/></Version>
     </Container>
   );
 };

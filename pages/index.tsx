@@ -18,11 +18,16 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import AboutMeContent from '../components/aboutMeWindow';
 import TerminalShortcut from '../components/terminalShortcut';
 
+type CyberLogMessage = {
+  message: string;
+  createdAt: string;
+}
+
 export async function getStaticProps() {
   const allSprintsData = await getSortedSprintsData();
   const allProjectsData = getSortedProjectsData();
 
-  const cyberLogMessages = [];
+  const cyberLogMessages: CyberLogMessage[] = [];
 
   const q = query(collection(db, 'messages'), orderBy('createdAt'));
   const querySnapshot = await getDocs(q);

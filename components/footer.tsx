@@ -1,9 +1,8 @@
 import { useContext } from 'react';
 import { Context, ActiveWindow } from './store';
-import Emoji from './emoji';
-import Link from 'next/link';
 import styled from 'styled-components';
 import { color, font } from '../theme';
+import Version from './version';
 
 const Container = styled.footer`
   display: flex;
@@ -52,12 +51,7 @@ const Footer = () => {
         { allActiveWindows }
       </ActiveWindowsTray>
       <ExtraInfoTray>
-          Made with <Emoji symbol="☕"/> {`&`} <Emoji symbol="💜"/> by 
-          <Link href="https://www.linkedin.com/in/mylesenriquez/">
-            <a>
-              Myles Enriquez
-            </a>
-          </Link>
+        <Version /> 
       </ExtraInfoTray>
     </Container>
   );
