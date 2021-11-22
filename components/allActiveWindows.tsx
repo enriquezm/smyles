@@ -3,9 +3,9 @@ import { Context, ActiveWindow } from './store';
 import Window from './window';
 
 const AllActiveWindows = () => {
-  const [activeWindows] = useContext(Context);
+  const { activeWindows} = useContext(Context);
 
-  const windows: ActiveWindow[] = activeWindows.map((window) => {
+  const windows: ActiveWindow[] = activeWindows.map((window: ActiveWindow) => {
     if (typeof window.content === 'string') {
       return <Window wide key={window.title} title={window.title}><span dangerouslySetInnerHTML={{ __html: window.content }} /></Window>
     }

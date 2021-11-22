@@ -67,9 +67,16 @@ const Content = styled.div`
   }
 
   // TODO: abstract out into token
-  p {
+  p,
+  li {
     font-size: 14px;
     line-height: 19px;
+  }
+
+  pre {
+    padding: 16px;
+    background: ${color.black};
+    color: ${color.yellow};
   }
 `;
 
@@ -82,7 +89,7 @@ type Props = {
 
 const Window = (props: Props) => {
   const [isVisible, setIsVisible] = useState(true);
-  const [activeWindows, setActiveWindows] = useContext(Context);
+  const { activeWindows, setActiveWindows } = useContext(Context);
 
   const handleClick = () => {
     setIsVisible(false);

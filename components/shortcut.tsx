@@ -28,7 +28,7 @@ type Props = {
 };
 
 const Shortcut = (props: Props) => {
-  const [ activeWindows, setActiveWindows ] = useContext(Context);
+  const { activeWindows, setActiveWindows } = useContext(Context);
 
   const handleClick = () => {
       if (windowIsNotActive()) {

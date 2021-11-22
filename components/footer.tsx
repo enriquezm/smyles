@@ -41,7 +41,7 @@ const ExtraInfoTray = styled.span`
 `;
 
 const Footer = () => {
-  const [activeWindows] = useContext(Context);
+  const { activeWindows } = useContext(Context);
 
   const allActiveWindows: ActiveWindow[] = activeWindows.map((window) => (<ActiveWindowBar key={window.title}>{window.title}</ActiveWindowBar>));
 
