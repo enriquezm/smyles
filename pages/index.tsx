@@ -13,6 +13,7 @@ import { getSortedProjectsData } from '../lib/projects';
 import MessageBoard from '../components/messageBoard';
 import AllActiveWindows from '../components/allActiveWindows';
 import { db, postToJSON } from '../lib/firebase';
+import Encrypto from '../components/encrypto';
 
 import { collection, getDocs, orderBy, query } from "firebase/firestore"; 
 import AboutMeContent from '../components/aboutMeWindow';
@@ -100,6 +101,7 @@ export default function HomePage({ allSprintsData, allProjectsData, cyberLogMess
             <LinkedinOutclickShortcut title="linkedin" />
 
             {/* <MessageBoard cyberLogMessages={cyberLogMessages} /> */}
+            <Encrypto />
 
             <AllActiveWindows />
           </Desktop>
