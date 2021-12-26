@@ -5,14 +5,12 @@ import { X } from 'react-feather';
 import styled from 'styled-components';
 import { color } from '../theme';
 
-const borderWidth = props => props.theme.border.md;
-
 const Container = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: ${borderWidth} solid ${color.black};
+  border: 3px solid var(--purple);
   width: ${props => props.wide ? '800px' : '400px'};
   max-height: 300px;
 `;
@@ -21,12 +19,12 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${color.pink};
-  color: ${color.white};
+  background-color: var(--black);
+  color: var(--white);
   width: 100%;
   position: sticky;
   top: 0;
-  border-bottom: ${borderWidth} solid ${color.black};
+  border-bottom: 3px solid var(--black);
   cursor: grab;
   padding: 4px;
 `;
@@ -37,7 +35,7 @@ const Title = styled.h2`
   margin-top: 0;
   margin-bottom: 0;
   padding: 0;
-  color: ${color.black};
+  color: var(--black);
 `;
 
 const ExitButton = styled.button`
@@ -51,11 +49,11 @@ const Content = styled.div`
   width: 100%;
   padding: 8px;
   overflow-y: scroll;
-  background-color: ${color.white};
+  background-color: var(--white); 
 
   &::-webkit-scrollbar {
     background-color: ${color.white};
-    border-left: ${borderWidth} solid black;
+    border-left: 3px solid black;
   }
 
   &::-webkit-scrollbar-thumb {

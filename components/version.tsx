@@ -1,10 +1,9 @@
 import Emoji from './emoji';
-import { font, color } from '../theme';
 import styled from 'styled-components';
 
 const Container = styled.p`
-  font-size: ${font.size.sm};
-  color: ${color.yellow};
+  font-size: 16px;
+  color: var(--yellow);
 `;
 
 const Version = () => (

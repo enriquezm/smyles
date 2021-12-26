@@ -1,8 +1,6 @@
 import { useContext } from 'react';
 import { Context, ActiveWindow } from './store';
 import styled from 'styled-components';
-import { color, font } from '../theme';
-import Version from './version';
 
 const Container = styled.footer`
   display: flex;
@@ -11,10 +9,10 @@ const Container = styled.footer`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: ${color.gray};
-  color: ${color.white};
+  background-color: var(--black);
+  color: var(--white);
   padding: 0 40px;
-  font-size: ${font.size.sm};
+  font-size: 12px;
   min-height: 25px;
 `;
 
@@ -25,19 +23,12 @@ const ActiveWindowsTray = styled.span`
 const ActiveWindowBar = styled.span`
   display: flex;
   align-items: center;
-  background-color: ${color.pink};
-  border-right: 3px solid ${color.turquoise};
-  color: ${color.black};
-  font-size: ${font.size.md};
+  background-color: var(--purple);
+  border-right: 3px solid var(--yellow); 
+  color: var(--black);
+  font-size: 12px; 
   min-width: 150px;
   padding: 0 4px;
-`;
-
-const ExtraInfoTray = styled.span`
-  display: flex;
-  gap: 8px;
-  padding: 4px;
-  font-size: ${font.size.sm};
 `;
 
 const Footer = () => {
@@ -50,9 +41,6 @@ const Footer = () => {
       <ActiveWindowsTray>
         { allActiveWindows }
       </ActiveWindowsTray>
-      <ExtraInfoTray>
-        <Version /> 
-      </ExtraInfoTray>
     </Container>
   );
 };
