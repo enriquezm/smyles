@@ -9,14 +9,14 @@ const Container = styled.div`
   align-items: center;
   width: max-content;
   cursor: ${props => props.isDisabled ? 'not-allowed' : 'pointer'};
-  margin-bottom: 20px;
+  margin-bottom: 32px;
   width: 100px;
 `;
 
 const Title = styled.p`
-  color: ${props => props.isDisabled ? color.gray : (props.colorOverride ? props.colorOverride : color.white)};
+  color: ${props => props.isDisabled ? color.gray : `var(--yellow)`};
   font-size: ${font.size.md};
-  margin: 0;
+  margin-top: 8px;
 `;
 
 type Props = {
@@ -50,11 +50,8 @@ const Shortcut = (props: Props) => {
         isDisabled={props.isDisabled}
         onClick={handleClick}>
         {props.children}
-        <Title 
-          isDisabled={props.isDisabled}
-          colorOverride={props.colorOverride}
-        >{
-          props.title}
+        <Title isDisabled={props.isDisabled}>
+          {props.title}
         </Title>
       </Container>
     </>

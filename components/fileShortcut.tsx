@@ -12,7 +12,6 @@ const FileShortcut = (props: Props) => {
     <Shortcut
       title={props.title}
       content={props.content}
-      colorOverride={props.colorOverride}
     >
       <FileIcon />
     </Shortcut>
