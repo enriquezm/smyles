@@ -8,7 +8,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
   width: 100px;
 `;
 
@@ -18,7 +18,7 @@ const Title = styled.p`
   gap: 4px;
   color: var(--yellow);
   font-size: ${font.size.md};
-  margin: 0;
+  margin-top: 8px;
 
   span {
     display: flex;

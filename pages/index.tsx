@@ -98,15 +98,13 @@ export default function HomePage({ allSprintsData, allProjectsData }) {
             title="about_me.txt" 
             content={<AboutMeContent/>}
           />
-          <DirectoryShortcut 
+          {/* <DirectoryShortcut 
             title="bits"
-            folderColor={color.turquoise}
             content={sprints}
-          />
+          /> */}
           <DirectoryShortcut 
             title="projects"
             content={projects}
-            isDisabled={true}
           />
           <GithubOutclickShortcut title="github" />
           <LinkedinOutclickShortcut title="linkedin" />
