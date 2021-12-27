@@ -16,7 +16,7 @@ const Title = styled.p`
   display: flex;
   align-items: center;
   gap: 4px;
-  color: ${color.white};
+  color: var(--yellow);
   font-size: ${font.size.md};
   margin: 0;
 
@@ -38,7 +38,7 @@ const OutclickShortcut = (props: Props) => (
         {props.children}
         <Title>
           <span>{props.title}</span>
-          <span><ExternalLink color={color.white} size={14}/></span>
+          <span><ExternalLink color="#E6FF4A" size={14}/></span>
         </Title>
       </Container>
     </Link>
