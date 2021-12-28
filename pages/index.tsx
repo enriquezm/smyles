@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Store from '../components/store';
+import GlobalState from '../components/globalState';
 import NavBar from '../components/navBar';
 import Footer from '../components/footer';
 import DirectoryShortcut from '../components/directoryShortcut';
@@ -8,7 +8,7 @@ import GithubOutclickShortcut from '../components/outclickShortcuts/githubOutcli
 import LinkedinOutclickShortcut from '../components/outclickShortcuts/linkedinOutclickShortcut';
 import { getSortedSprintsData } from '../lib/sprints'
 import { getSortedProjectsData } from '../lib/projects';
-import AllActiveWindows from '../components/allActiveWindows';
+import AllActiveWindows from '../components/allActiveApps';
 import AboutMeContent from '../components/aboutMeWindow';
 
 import { useState } from 'react';
@@ -68,8 +68,6 @@ const Desktop = styled.div`
 `;
 
 export default function HomePage({ allSprintsData, allProjectsData }) {
-  const [displayWelcome, setDisplayWelcome] = useState(true);
-
    const projects = allProjectsData.map(({ id, title, date }) => (
     <li key={id}>{title} {date}</li>
   ));
@@ -90,10 +88,9 @@ export default function HomePage({ allSprintsData, allProjectsData }) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <GlobalStyles/>
-      <Store>
+      <GlobalState>
         <NavBar />
         <Desktop>
-          { displayWelcome && <WelcomeInfoPopup /> }
           <FileShortcut
             title="about_me.txt" 
             content={<AboutMeContent/>}
@@ -112,7 +109,7 @@ export default function HomePage({ allSprintsData, allProjectsData }) {
           <AllActiveWindows />
         </Desktop>
         <Footer />
-      </Store>
+      </GlobalState>
     </>
   );
 }

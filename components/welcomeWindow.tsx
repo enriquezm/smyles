@@ -9,7 +9,7 @@ const WelcomeWindow = () => {
     <Window
       key={id}
       id={id}
-      title="welcome.txt" 
+      heading="welcome.txt" 
     >
       <p>Hey! Welcome to smyles.net</p>
       <p>Wondering wtf this site is about? It's my place on the web to dump my thoughts/ideas/experiments.</p>

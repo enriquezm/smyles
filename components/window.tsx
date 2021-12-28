@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Context, ActiveWindow } from './store';
+import { Context, ActiveApp } from './globalState';
 import Draggable from 'react-draggable';
 import { X } from 'react-feather';
 import styled from 'styled-components';
@@ -72,7 +72,7 @@ const Content = styled.div`
 `;
 
 type Props = {
-  title: string;
+  heading: string;
   children: any;
   id?: string;
   wide?: boolean;
@@ -80,13 +80,13 @@ type Props = {
 
 const Window = (props: Props) => {
   const [isVisible, setIsVisible] = useState(true);
-  const [activeWindows, setActiveWindows] = useContext(Context);
+  const [activeApps, setActiveApps] = useContext(Context);
 
   const handleClick = () => {
     setIsVisible(false);
 
-    const updatedActiveWindows: ActiveWindow[] = activeWindows.filter((window: ActiveWindow) => window.title !== props.title);
-    setActiveWindows(updatedActiveWindows);
+    const updatedActiveApps = activeApps.filter((window) => window.heading !== props.heading);
+    setActiveApps(updatedActiveApps);
   }
 
   return (
@@ -98,7 +98,7 @@ const Window = (props: Props) => {
         >
           <Container wide={props.wide}>
             <Header>
-              <Title>{props.title}</Title>
+              <Title>{props.heading}</Title>
               <ExitButton
                 onClick={handleClick}
               >

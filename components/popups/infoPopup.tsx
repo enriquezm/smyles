@@ -1,3 +1,5 @@
+import { Context } from '../../components/globalState';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { X } from 'react-feather';
 
@@ -60,12 +62,24 @@ const Button = styled.button`
   }
 `;
 
-const InfoPopup = ({ heading, children }) => {
+type Props = {
+  heading: string;
+  children: React.ReactNode;
+}
+
+const InfoPopup = ({ heading, children }: Props) => {
+  const [activeApps, setActiveApps] = useContext(Context);
+
+  const handleClick = () => {
+    const updatedActiveApps = activeApps.filter((window) => window.heading !== heading);
+    setActiveApps(updatedActiveApps);
+  }
+
   return (
     <Container>
       <Header>
         <h2>{ heading }</h2>
-        <Button>
+        <Button onClick={handleClick}>
           <X size={24} />
         </Button>
       </Header>

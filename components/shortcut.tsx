@@ -1,4 +1,4 @@
-import { Context, ActiveWindow } from './store';
+import { Context, ActiveWindow } from './globalState';
 import React, { useContext } from 'react';
 import { color, font } from '../theme';
 import styled from 'styled-components';

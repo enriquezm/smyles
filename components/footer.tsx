@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Context, ActiveWindow } from './store';
+import { Context, ActiveApp } from './globalState';
 import styled from 'styled-components';
 
 const Container = styled.footer`
@@ -32,14 +32,15 @@ const ActiveWindowBar = styled.span`
 `;
 
 const Footer = () => {
-  const [activeWindows] = useContext(Context);
+  const [activeApps] = useContext(Context);
 
-  const allActiveWindows: ActiveWindow[] = activeWindows.map((window) => (<ActiveWindowBar key={window.title}>{window.title}</ActiveWindowBar>));
+  // const allActiveWindows: ActiveApp[] = activeWindows.map((window) => (<ActiveWindowBar key={window.title}>{window.title}</ActiveWindowBar>));
 
   return (
     <Container>
       <ActiveWindowsTray>
-        { allActiveWindows }
+        {/* { allActiveWindows } */}
+        TODO: Will add apps here
       </ActiveWindowsTray>
     </Container>
   );
