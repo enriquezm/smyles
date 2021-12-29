@@ -1,6 +1,7 @@
 import { Context } from '../../components/globalState';
 import { useContext } from 'react';
 import styled from 'styled-components';
+import IconButton from '../styles/IconButton';
 import { X } from 'react-feather';
 
 const Container = styled.div`
@@ -33,35 +34,6 @@ const Header = styled.header`
   }
 `;
 
-// TODO: abstract general icon button styles
-const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  border: none;
-  padding: 4px;
-  cursor: pointer;
-  border: 1px dashed transparent;
-
-  svg {
-    stroke: var(--yellow);
-  }
-
-  &:hover {
-    transition: border 0.3s;
-    border: 1px dashed var(--yellow);
-  }
-
-  &:active {
-    border: 1px dashed var(--pink);
-
-    svg {
-      stroke: var(--pink);
-    }
-  }
-`;
-
 type Props = {
   heading: string;
   children: React.ReactNode;
@@ -79,9 +51,9 @@ const InfoPopup = ({ heading, children }: Props) => {
     <Container>
       <Header>
         <h2>{ heading }</h2>
-        <Button onClick={handleClick}>
+        <IconButton onClick={handleClick}>
           <X size={24} />
-        </Button>
+        </IconButton>
       </Header>
       { children }
     </Container>

@@ -1,4 +1,4 @@
-import { Context, ActiveWindow } from './globalState';
+import { Context } from './globalState';
 import React, { useContext } from 'react';
 import { color, font } from '../theme';
 import styled from 'styled-components';
@@ -20,7 +20,7 @@ const Title = styled.p`
 `;
 
 type Props = {
-  title: string;
+  heading: string;
   content: any;
   isDisabled?: boolean;
   children: React.ReactNode;
@@ -28,20 +28,20 @@ type Props = {
 };
 
 const Shortcut = (props: Props) => {
-  const [ activeWindows, setActiveWindows ] = useContext(Context);
+  const [ activeApps, setActiveApps ] = useContext(Context);
 
   const handleClick = () => {
       if (windowIsNotActive()) {
-        const updatedActiveWindows: ActiveWindow[] = [...activeWindows, {
-          title: props.title,
+        const updatedActiveApps = [...activeApps, {
+          heading: props.heading,
           content: props.content,
         }];
-        setActiveWindows(updatedActiveWindows);
+        setActiveApps(updatedActiveApps);
       }
   }
 
   const windowIsNotActive = (): boolean => {
-    return !activeWindows.some(window => window.title === props.title);
+    return !activeApps.some(app => app.heading === props.heading);
   }
 
   return (
@@ -51,7 +51,7 @@ const Shortcut = (props: Props) => {
         onClick={handleClick}>
         {props.children}
         <Title isDisabled={props.isDisabled}>
-          {props.title}
+          {props.heading}
         </Title>
       </Container>
     </>

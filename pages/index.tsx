@@ -11,8 +11,6 @@ import { getSortedProjectsData } from '../lib/projects';
 import AllActiveWindows from '../components/allActiveApps';
 import AboutMeContent from '../components/aboutMeWindow';
 
-import { useState } from 'react';
-import WelcomeInfoPopup from '../components/popups/welcomeInfoPopup';
 import styled, { createGlobalStyle } from 'styled-components';
 import { color } from '../theme';
 
@@ -76,7 +74,7 @@ export default function HomePage({ allSprintsData, allProjectsData }) {
     <FileShortcut
       colorOverride={color.black} 
       key={id} 
-      title={title} 
+      heading={title} 
       content={content}
     />
   ));
@@ -92,15 +90,15 @@ export default function HomePage({ allSprintsData, allProjectsData }) {
         <NavBar />
         <Desktop>
           <FileShortcut
-            title="about_me.txt" 
+            heading="about_me.txt" 
             content={<AboutMeContent/>}
           />
-          {/* <DirectoryShortcut 
-            title="bits"
-            content={sprints}
-          /> */}
           <DirectoryShortcut 
-            title="projects"
+            heading="bits"
+            content={sprints}
+          />
+          <DirectoryShortcut 
+            heading="projects"
             content={projects}
           />
           <GithubOutclickShortcut title="github" />

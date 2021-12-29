@@ -2,22 +2,21 @@ import Shortcut from './shortcut';
 import FolderIcon from './icons/folderIcon';
 
 type Props = {
-  title: string;
+  heading: string;
   content: string;
   isDisabled?: boolean;
   folderColor?: string;
 };
 
-const DirectoryShortcut = (props: Props) => {
+const DirectoryShortcut = ({ heading, content, isDisabled }: Props) => {
   return (
     <Shortcut
-      title={props.title}
-      content={props.content}
-      isDisabled={props.isDisabled}
+      heading={heading}
+      content={content}
+      isDisabled={isDisabled}
     >
       <FolderIcon
-        folderColor={props.folderColor}
-        isDisabled={props.isDisabled}
+        isDisabled={isDisabled}
       />
     </Shortcut>
   );

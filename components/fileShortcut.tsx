@@ -2,16 +2,16 @@ import Shortcut from './shortcut';
 import FileIcon from './icons/fileIcon';
 
 type Props = {
-  title: string;
+  heading: string;
   content: React.ReactNode;
   colorOverride?: string;
 };
 
-const FileShortcut = (props: Props) => {
+const FileShortcut = ({ heading, content }: Props) => {
   return (
     <Shortcut
-      title={props.title}
-      content={props.content}
+      heading={heading}
+      content={content}
     >
       <FileIcon />
     </Shortcut>

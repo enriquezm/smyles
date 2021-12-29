@@ -22,7 +22,7 @@ const Logo = styled.h1`
 const NavBar = () => {
   return (
     <Container>
-      <Logo>TGTC_os</Logo>
+      <Logo>tgtc_OS</Logo>
       <Version />
     </Container>
   );

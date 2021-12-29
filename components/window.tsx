@@ -1,9 +1,10 @@
 import { useState, useContext } from 'react';
-import { Context, ActiveApp } from './globalState';
+import { Context } from './globalState';
 import Draggable from 'react-draggable';
 import { X } from 'react-feather';
 import styled from 'styled-components';
 import { color } from '../theme';
+import IconButton from './styles/IconButton';
 
 const Container = styled.div`
   position: absolute;
@@ -11,15 +12,14 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   border: 3px solid var(--purple);
-  width: ${props => props.wide ? '800px' : '400px'};
-  max-height: 300px;
+  width: ${props => props.wide ? '800px' : '600px'};
 `;
 
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--black);
+  background-color: #180E3C;
   color: var(--white);
   width: 100%;
   position: sticky;
@@ -35,21 +35,16 @@ const Title = styled.h2`
   margin-top: 0;
   margin-bottom: 0;
   padding: 0;
-  color: var(--black);
-`;
-
-const ExitButton = styled.button`
-  border: none;
-  background: none;
-  cursor: pointer;
-  padding: 0;
+  color: var(--turquoise);
 `;
 
 const Content = styled.div`
   width: 100%;
+  max-height: 400px;
   padding: 8px;
-  overflow-y: scroll;
-  background-color: var(--white); 
+  overflow-y: auto;
+  background-color: var(--black); 
+  color: var(--white);
 
   &::-webkit-scrollbar {
     background-color: ${color.white};
@@ -68,6 +63,7 @@ const Content = styled.div`
   p {
     font-size: 14px;
     line-height: 19px;
+    margin-bottom: 16px;
   }
 `;
 
@@ -94,16 +90,16 @@ const Window = (props: Props) => {
       { isVisible &&
         <Draggable
           bounds="body"
-          defaultPosition={{x: 300, y: 0}}
+          defaultPosition={{x: 0, y: 0}}
         >
           <Container wide={props.wide}>
             <Header>
               <Title>{props.heading}</Title>
-              <ExitButton
+              <IconButton
                 onClick={handleClick}
               >
                 <X size={16} />
-              </ExitButton>
+              </IconButton>
             </Header>
             <Content> 
               { props.children }
