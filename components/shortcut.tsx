@@ -11,6 +11,24 @@ const Container = styled.div`
   cursor: ${props => props.isDisabled ? 'not-allowed' : 'pointer'};
   margin-bottom: 32px;
   width: 100px;
+
+  p {
+    padding: 4px;
+    border: 1px dashed transparent;
+    transition: border 0.3s;
+  } 
+
+  &:hover {
+    p {
+      border: 1px dashed var(--yellow);
+    }
+  }
+
+  &:active {
+    p {
+      border: 1px dashed var(--pink)
+    }
+  }
 `;
 
 const Title = styled.p`

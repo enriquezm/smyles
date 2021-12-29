@@ -10,6 +10,24 @@ const Container = styled.div`
   cursor: pointer;
   margin-bottom: 32px;
   width: 100px;
+
+  p {
+    padding: 4px;
+    border: 1px dashed transparent;
+    transition: border 0.3s;
+  } 
+
+  &:hover {
+    p {
+      border: 1px dashed var(--yellow);
+    }
+  }
+
+  &:active {
+    p {
+      border: 1px dashed var(--pink)
+    }
+  }
 `;
 
 const Title = styled.p`
@@ -19,21 +37,17 @@ const Title = styled.p`
   color: var(--yellow);
   font-size: ${font.size.md};
   margin-top: 8px;
-
-  span {
-    display: flex;
-    align-items: center;
-  }
 `;
 
 type Props = {
   children: React.ReactNode;
   title: string;
+  href: string;
 };
 
 const OutclickShortcut = (props: Props) => (
   <>
-    <Link href="https://github.com/enriquezm" passHref>
+    <Link href={props.href} passHref>
       <Container>
         {props.children}
         <Title>

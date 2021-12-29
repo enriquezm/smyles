@@ -101,8 +101,8 @@ export default function HomePage({ allSprintsData, allProjectsData }) {
             heading="projects"
             content={projects}
           />
-          <GithubOutclickShortcut title="github" />
-          <LinkedinOutclickShortcut title="linkedin" />
+          <GithubOutclickShortcut href="https://github.com/enriquezm" title="github" />
+          <LinkedinOutclickShortcut href="https://www.linkedin.com/in/mylesenriquez/" title="linkedin" />
 
           <AllActiveWindows />
         </Desktop>
