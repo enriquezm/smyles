@@ -11,26 +11,11 @@ type Props = {
 const INITIAL_ACTIVE_APPS = [
   {
     id: '123',
-    type: 'welcomeInfoPopup',
+    type: 'popup',
     heading: 'welcome.info',
+    content: "<p>Hihi! Welcome to thatguythatcodes.com</p><p>Wondering wtf this site is about? It's my place on the web to dump my thoughts/ideas/experiments.</p><p>On the left you'll find some shortcuts to my content. Have fun and take a look around.</p><p>Who knows, maybe you'll find some easter eggs around here...</p>",
   },
 ];
-
-// mock data for windows or popups
-/*
- {
-   id: 123,
-   componentType: 'popup',
-   heading: 'welcome.info',
-   content: '<p>blah blah</p><p>blah blah</p>
- },
- {
-   id: 456,
-   componentType: 'window',
-   heading: 'posts',
-   content: <shortcut /><shortcut/>
- }
-*/
 
 const GlobalState = ({ children }: Props) => {
   const [activeApps, setActiveApps] = useState(INITIAL_ACTIVE_APPS)

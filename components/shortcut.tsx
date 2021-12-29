@@ -38,6 +38,7 @@ const Title = styled.p`
 `;
 
 type Props = {
+  type?: string;
   heading: string;
   content: any;
   isDisabled?: boolean;
@@ -51,6 +52,7 @@ const Shortcut = (props: Props) => {
   const handleClick = () => {
       if (windowIsNotActive()) {
         const updatedActiveApps = [...activeApps, {
+          type: props.type,
           heading: props.heading,
           content: props.content,
         }];

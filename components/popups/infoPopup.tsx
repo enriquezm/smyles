@@ -36,10 +36,10 @@ const Header = styled.header`
 
 type Props = {
   heading: string;
-  children: React.ReactNode;
+  content: string;
 }
 
-const InfoPopup = ({ heading, children }: Props) => {
+const InfoPopup = ({ heading, content }: Props) => {
   const [activeApps, setActiveApps] = useContext(Context);
 
   const handleClick = () => {
@@ -55,7 +55,7 @@ const InfoPopup = ({ heading, children }: Props) => {
           <X size={24} />
         </IconButton>
       </Header>
-      { children }
+      <div dangerouslySetInnerHTML={{__html: content}} /> 
     </Container>
   );
 }
