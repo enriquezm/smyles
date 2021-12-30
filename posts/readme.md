@@ -3,6 +3,6 @@ title: 'README.txt'
 date: '2021-11-04'
 ---
 
-Bits has sort of been something I've been wanting to do. Essentially, they're small, bite-sized, mini tutorials for devs to try out.
+Like all other engineers out there, I've come across many obstacles when working with JavaScript.
 
-They're mainly targeted for people getting into frontend dev, but anyone's welcome to try.
+These posts explain all those obstacles and how I overcame them in hopes of helping others out there working with the language as well.
