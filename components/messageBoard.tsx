@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { collection, addDoc, Timestamp } from 'firebase/firestore';
-import { db } from '../lib/firebase';
 import styled from 'styled-components';
 import { color } from '../theme';
 
@@ -99,11 +97,6 @@ const MessageBoard = ({cyberLogMessages}) => {
   };
 
   const handleClick = async (): Promise<void> => {
-    await addDoc(collection(db, 'messages'), {
-      createdAt: Timestamp.now().toMillis(),
-      message: content,
-    });
-
     const updatedMessages = [...messages, {
       message: content
     }];
