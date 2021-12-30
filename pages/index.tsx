@@ -6,12 +6,12 @@ import DirectoryShortcut from '../components/directoryShortcut';
 import FileShortcut from '../components/fileShortcut';
 import GithubOutclickShortcut from '../components/outclickShortcuts/githubOutclickShortcut';
 import LinkedinOutclickShortcut from '../components/outclickShortcuts/linkedinOutclickShortcut';
-import { getSortedSprintsData } from '../lib/sprints'
+import { getSortedPostsData } from '../lib/posts'
 import { getSortedProjectsData } from '../lib/projects';
 import AllActiveWindows from '../components/allActiveApps';
-import AboutMeContent from '../components/aboutMeWindow';
 
 import styled, { createGlobalStyle } from 'styled-components';
+import AboutMeShortcut from '../components/aboutMeShortcut';
 
 // TODO: Abstract out into module
 const GlobalStyles = createGlobalStyle`
@@ -38,7 +38,6 @@ const GlobalStyles = createGlobalStyle`
     background-color: var(--offBlack);
     height: 100vh;
     margin: 0;
-    position: relative;
   }
 
   a {
@@ -47,12 +46,12 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 export async function getStaticProps() {
-  const allSprintsData = await getSortedSprintsData();
+  const allPostsData = await getSortedPostsData();
   const allProjectsData = getSortedProjectsData();
 
   return {
     props: {
-      allSprintsData,
+      allPostsData,
       allProjectsData,
     }
   }
@@ -64,12 +63,12 @@ const Desktop = styled.div`
   padding: 20px;
 `;
 
-export default function HomePage({ allSprintsData, allProjectsData }) {
+export default function HomePage({ allPostsData, allProjectsData }) {
    const projects = allProjectsData.map(({ id, title, date }) => (
     <li key={id}>{title} {date}</li>
   ));
 
-  const sprints = allSprintsData.map(({ id, title, content }) => (
+  const posts = allPostsData.map(({ id, title, content }) => (
     <FileShortcut
       key={id}
       type='popup'
@@ -88,20 +87,13 @@ export default function HomePage({ allSprintsData, allProjectsData }) {
       <GlobalState>
         <NavBar />
         <Desktop>
-          <FileShortcut
-            type="popup"
-            heading="about_me.txt" 
-            content="<p>Hey! My name is Myles.</p>
-            <p>I'm a frontend engineer working out of Vegas.</p>
-            <p>I enjoy building robust UI. I try to stay empathetic towards a user and build a UI that they can connect with. I do this by studying how video games, movies, and experiences overall captivate people and sprinkle that into the UI I build.</p>
-            <p>I live with my wife and two cats (Finn and Felix). You might actually see them around here somewhere...</p>"
+          <AboutMeShortcut /> 
+          <DirectoryShortcut 
+            heading="posts/"
+            content={posts}
           />
           <DirectoryShortcut 
-            heading="bits"
-            content={sprints}
-          />
-          <DirectoryShortcut 
-            heading="projects"
+            heading="projects/"
             content={projects}
           />
           <GithubOutclickShortcut href="https://github.com/enriquezm" title="github" />

@@ -1,6 +1,5 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { Context } from './globalState';
-import Draggable from 'react-draggable';
 import { X } from 'react-feather';
 import styled from 'styled-components';
 import { color } from '../theme';
@@ -8,6 +7,9 @@ import IconButton from './styles/IconButton';
 
 const Container = styled.div`
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,39 +77,27 @@ type Props = {
 };
 
 const Window = (props: Props) => {
-  const [isVisible, setIsVisible] = useState(true);
   const [activeApps, setActiveApps] = useContext(Context);
 
   const handleClick = () => {
-    setIsVisible(false);
-
     const updatedActiveApps = activeApps.filter((window) => window.heading !== props.heading);
     setActiveApps(updatedActiveApps);
   }
 
   return (
-    <>
-      { isVisible &&
-        <Draggable
-          bounds="body"
-          defaultPosition={{x: 0, y: 0}}
+    <Container>
+      <Header>
+        <Title>{props.heading}</Title>
+        <IconButton
+          onClick={handleClick}
         >
-          <Container wide={props.wide}>
-            <Header>
-              <Title>{props.heading}</Title>
-              <IconButton
-                onClick={handleClick}
-              >
-                <X size={16} />
-              </IconButton>
-            </Header>
-            <Content> 
-              { props.children }
-            </Content>
-          </Container>
-        </Draggable>
-      }
-    </>
+          <X size={24} />
+        </IconButton>
+      </Header>
+      <Content> 
+        { props.children }
+      </Content>
+    </Container>
   );
 }
 

@@ -44,7 +44,7 @@ class MyDocument extends Document {
           <link rel="" href="/favicon.ico" />
         </Head>
         <body>
-          <Main />
+         <Main />
           <NextScript />
         </body>
       </Html>
