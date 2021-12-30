@@ -7,7 +7,6 @@ import FileShortcut from '../components/fileShortcut';
 import GithubOutclickShortcut from '../components/outclickShortcuts/githubOutclickShortcut';
 import LinkedinOutclickShortcut from '../components/outclickShortcuts/linkedinOutclickShortcut';
 import { getSortedPostsData } from '../lib/posts'
-import { getSortedProjectsData } from '../lib/projects';
 import AllActiveWindows from '../components/allActiveApps';
 
 import styled, { createGlobalStyle } from 'styled-components';
@@ -47,12 +46,10 @@ const GlobalStyles = createGlobalStyle`
 
 export async function getStaticProps() {
   const allPostsData = await getSortedPostsData();
-  const allProjectsData = getSortedProjectsData();
 
   return {
     props: {
       allPostsData,
-      allProjectsData,
     }
   }
 }
@@ -64,10 +61,6 @@ const Desktop = styled.div`
 `;
 
 export default function HomePage({ allPostsData, allProjectsData }) {
-   const projects = allProjectsData.map(({ id, title, date }) => (
-    <li key={id}>{title} {date}</li>
-  ));
-
   const posts = allPostsData.map(({ id, title, content }) => (
     <FileShortcut
       key={id}
@@ -91,10 +84,6 @@ export default function HomePage({ allPostsData, allProjectsData }) {
           <DirectoryShortcut 
             heading="posts/"
             content={posts}
-          />
-          <DirectoryShortcut 
-            heading="projects/"
-            content={projects}
           />
           <GithubOutclickShortcut href="https://github.com/enriquezm" title="github" />
           <LinkedinOutclickShortcut href="https://www.linkedin.com/in/mylesenriquez/" title="linkedin" />
