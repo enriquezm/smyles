@@ -18,6 +18,18 @@ interface MatterData {
 
 }
 
+function sortPosts(posts) {
+  return posts.sort(({ date: a }, { date: b }) => {
+    if (a < b) {
+      return 1
+    } else if (a > b) {
+      return -1
+    } else {
+      return 0
+    }
+  })
+}
+
 export async function getSortedPostsData() {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
@@ -31,8 +43,7 @@ export async function getSortedPostsData() {
 
     // Use gray-matter to parse the post metadata section
     const matterResult: MatterData = matter(fileContents);
-
-      // Use remark to convert markdown into HTML string
+    
     const processedContent = await remark()
       .use(html)
       .process(matterResult.content);
@@ -46,14 +57,6 @@ export async function getSortedPostsData() {
       ...matterResult.data
     }
   }));
-  // Sort posts by date
-  return allPostsData.sort(({ date: a }, { date: b }) => {
-    if (a < b) {
-      return 1
-    } else if (a > b) {
-      return -1
-    } else {
-      return 0
-    }
-  })
+  
+  return allPostsData;
 }
