@@ -4,11 +4,12 @@ import { color } from '../../theme';
 
 type Props = {
   title: string;
+  href: string;
 };
 
 const GithubOutclickShortcut = (props: Props) => {
   return (
-    <OutclickShortcut title={props.title}>
+    <OutclickShortcut href={props.href} title={props.title}>
       <GitHub color={color.purple} />
     </OutclickShortcut>
   );

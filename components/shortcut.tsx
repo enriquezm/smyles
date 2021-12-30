@@ -1,4 +1,4 @@
-import { Context, ActiveWindow } from './store';
+import { Context } from './globalState';
 import React, { useContext } from 'react';
 import { color, font } from '../theme';
 import styled from 'styled-components';
@@ -9,18 +9,37 @@ const Container = styled.div`
   align-items: center;
   width: max-content;
   cursor: ${props => props.isDisabled ? 'not-allowed' : 'pointer'};
-  margin-bottom: 20px;
+  margin-bottom: 32px;
   width: 100px;
+
+  p {
+    padding: 4px;
+    border: 1px dashed transparent;
+    transition: border 0.3s;
+  } 
+
+  &:hover {
+    p {
+      border: 1px dashed var(--yellow);
+    }
+  }
+
+  &:active {
+    p {
+      border: 1px dashed var(--pink)
+    }
+  }
 `;
 
 const Title = styled.p`
-  color: ${props => props.isDisabled ? color.gray : (props.colorOverride ? props.colorOverride : color.white)};
+  color: ${props => props.isDisabled ? color.gray : `var(--yellow)`};
   font-size: ${font.size.md};
-  margin: 0;
+  margin-top: 8px;
 `;
 
 type Props = {
-  title: string;
+  type?: string;
+  heading: string;
   content: any;
   isDisabled?: boolean;
   children: React.ReactNode;
@@ -28,20 +47,21 @@ type Props = {
 };
 
 const Shortcut = (props: Props) => {
-  const [ activeWindows, setActiveWindows ] = useContext(Context);
+  const [ activeApps, setActiveApps ] = useContext(Context);
 
   const handleClick = () => {
       if (windowIsNotActive()) {
-        const updatedActiveWindows: ActiveWindow[] = [...activeWindows, {
-          title: props.title,
+        const updatedActiveApps = [...activeApps, {
+          type: props.type,
+          heading: props.heading,
           content: props.content,
         }];
-        setActiveWindows(updatedActiveWindows);
+        setActiveApps(updatedActiveApps);
       }
   }
 
   const windowIsNotActive = (): boolean => {
-    return !activeWindows.some(window => window.title === props.title);
+    return !activeApps.some(app => app.heading === props.heading);
   }
 
   return (
@@ -50,11 +70,8 @@ const Shortcut = (props: Props) => {
         isDisabled={props.isDisabled}
         onClick={handleClick}>
         {props.children}
-        <Title 
-          isDisabled={props.isDisabled}
-          colorOverride={props.colorOverride}
-        >{
-          props.title}
+        <Title isDisabled={props.isDisabled}>
+          {props.heading}
         </Title>
       </Container>
     </>

@@ -1,51 +1,55 @@
 import Head from 'next/head';
-import Store from '../components/store';
+import GlobalState from '../components/globalState';
 import NavBar from '../components/navBar';
 import Footer from '../components/footer';
 import DirectoryShortcut from '../components/directoryShortcut';
 import FileShortcut from '../components/fileShortcut';
 import GithubOutclickShortcut from '../components/outclickShortcuts/githubOutclickShortcut';
 import LinkedinOutclickShortcut from '../components/outclickShortcuts/linkedinOutclickShortcut';
-import styled, { ThemeProvider } from 'styled-components';
-import theme, { color } from '../theme';
-import { getSortedSprintsData } from '../lib/sprints'
-import { getSortedProjectsData } from '../lib/projects';
-import MessageBoard from '../components/messageBoard';
-import AllActiveWindows from '../components/allActiveWindows';
-import { db, postToJSON } from '../lib/firebase';
+import { getSortedPostsData } from '../lib/posts'
+import AllActiveWindows from '../components/allActiveApps';
 
-import { collection, getDocs, orderBy, query } from "firebase/firestore"; 
-import AboutMeContent from '../components/aboutMeWindow';
-import TerminalShortcut from '../components/terminalShortcut';
+import styled, { createGlobalStyle } from 'styled-components';
+import AboutMeShortcut from '../components/aboutMeShortcut';
 
-type CyberLogMessage = {
-  message: string;
-  createdAt: string;
-}
+// TODO: Abstract out into module
+const GlobalStyles = createGlobalStyle`
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --black: #000;
+    --white: #fff;
+    --offBlack: #01020A;
+    --purple: #8777C6;
+    --yellow: #E6FF4A;
+    --turquoise: #25FFCB;
+    --pink: #FF327C;
+  }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: var(--offBlack);
+    height: 100vh;
+    margin: 0;
+  }
+
+  a {
+    color: var(--yellow);
+  }
+`;
 
 export async function getStaticProps() {
-  const allSprintsData = await getSortedSprintsData();
-  const allProjectsData = getSortedProjectsData();
-
-  const cyberLogMessages: CyberLogMessage[] = [];
-
-  const q = query(collection(db, 'messages'), orderBy('createdAt'));
-  const querySnapshot = await getDocs(q);
-  querySnapshot.forEach((doc) => {
-    const data = doc.data();
-    const newDoc = {
-      message: data.message,
-      createdAt: data.createdAt,
-    };
-
-    cyberLogMessages.push(newDoc);
-  }); 
+  const allPostsData = await getSortedPostsData();
 
   return {
     props: {
-      allSprintsData,
-      allProjectsData,
-      cyberLogMessages,
+      allPostsData,
     }
   }
 }
@@ -53,18 +57,15 @@ export async function getStaticProps() {
 const Desktop = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 20px;
 `;
 
-export default function HomePage({ allSprintsData, allProjectsData, cyberLogMessages }) {
-   const projects = allProjectsData.map(({ id, title, date }) => (
-    <li key={id}>{title} {date}</li>
-  ));
-
-  const sprints = allSprintsData.map(({ id, title, content }) => (
+export default function HomePage({ allPostsData, allProjectsData }) {
+  const posts = allPostsData.map(({ id, title, content }) => (
     <FileShortcut
-      colorOverride={color.black} 
-      key={id} 
-      title={title} 
+      key={id}
+      type='popup'
+      heading={title} 
       content={content}
     />
   ));
@@ -75,37 +76,22 @@ export default function HomePage({ allSprintsData, allProjectsData, cyberLogMess
         <title key="title">That Guy That Codes</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <ThemeProvider theme={theme}>
-        <Store>
-          <NavBar />
-          <Desktop>
-            <FileShortcut
-              title="about_me.txt" 
-              content={<AboutMeContent/>}
-            />
-            <DirectoryShortcut 
-              title="bits"
-              folderColor={color.turquoise}
-              content={sprints}
-            />
-            <DirectoryShortcut 
-              title="projects"
-              content={projects}
-              isDisabled={true}
-            />
-            {/* <TerminalShortcut
-              title="cyberGreet.exe"
-            /> */}
-            <GithubOutclickShortcut title="github" />
-            <LinkedinOutclickShortcut title="linkedin" />
+      <GlobalStyles/>
+      <GlobalState>
+        <NavBar />
+        <Desktop>
+          <AboutMeShortcut /> 
+          <DirectoryShortcut 
+            heading="posts/"
+            content={posts}
+          />
+          <GithubOutclickShortcut href="https://github.com/enriquezm" title="github" />
+          <LinkedinOutclickShortcut href="https://www.linkedin.com/in/mylesenriquez/" title="linkedin" />
 
-            {/* <MessageBoard cyberLogMessages={cyberLogMessages} /> */}
-
-            <AllActiveWindows />
-          </Desktop>
-          <Footer />
-        </Store>
-      </ThemeProvider>
+          <AllActiveWindows />
+        </Desktop>
+        <Footer />
+      </GlobalState>
     </>
   );
 }

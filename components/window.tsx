@@ -1,32 +1,32 @@
-import { useState, useContext } from 'react';
-import { Context, ActiveWindow } from './store';
-import Draggable from 'react-draggable';
+import { useContext } from 'react';
+import { Context } from './globalState';
 import { X } from 'react-feather';
 import styled from 'styled-components';
 import { color } from '../theme';
-
-const borderWidth = props => props.theme.border.md;
+import IconButton from './styles/IconButton';
 
 const Container = styled.div`
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: ${borderWidth} solid ${color.black};
-  width: ${props => props.wide ? '800px' : '400px'};
-  max-height: 300px;
+  border: 3px solid var(--purple);
+  width: ${props => props.wide ? '800px' : '600px'};
 `;
 
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${color.pink};
-  color: ${color.white};
+  background-color: #180E3C;
+  color: var(--white);
   width: 100%;
   position: sticky;
   top: 0;
-  border-bottom: ${borderWidth} solid ${color.black};
+  border-bottom: 3px solid var(--black);
   cursor: grab;
   padding: 4px;
 `;
@@ -37,25 +37,20 @@ const Title = styled.h2`
   margin-top: 0;
   margin-bottom: 0;
   padding: 0;
-  color: ${color.black};
-`;
-
-const ExitButton = styled.button`
-  border: none;
-  background: none;
-  cursor: pointer;
-  padding: 0;
+  color: var(--turquoise);
 `;
 
 const Content = styled.div`
   width: 100%;
+  max-height: 400px;
   padding: 8px;
-  overflow-y: scroll;
-  background-color: ${color.white};
+  overflow-y: auto;
+  background-color: var(--black); 
+  color: var(--white);
 
   &::-webkit-scrollbar {
     background-color: ${color.white};
-    border-left: ${borderWidth} solid black;
+    border-left: 3px solid black;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -70,50 +65,39 @@ const Content = styled.div`
   p {
     font-size: 14px;
     line-height: 19px;
+    margin-bottom: 16px;
   }
 `;
 
 type Props = {
-  title: string;
+  heading: string;
   children: any;
   id?: string;
   wide?: boolean;
 };
 
 const Window = (props: Props) => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [activeWindows, setActiveWindows] = useContext(Context);
+  const [activeApps, setActiveApps] = useContext(Context);
 
   const handleClick = () => {
-    setIsVisible(false);
-
-    const updatedActiveWindows: ActiveWindow[] = activeWindows.filter((window: ActiveWindow) => window.title !== props.title);
-    setActiveWindows(updatedActiveWindows);
+    const updatedActiveApps = activeApps.filter((window) => window.heading !== props.heading);
+    setActiveApps(updatedActiveApps);
   }
 
   return (
-    <>
-      { isVisible &&
-        <Draggable
-          bounds="body"
-          defaultPosition={{x: 300, y: 0}}
+    <Container>
+      <Header>
+        <Title>{props.heading}</Title>
+        <IconButton
+          onClick={handleClick}
         >
-          <Container wide={props.wide}>
-            <Header>
-              <Title>{props.title}</Title>
-              <ExitButton
-                onClick={handleClick}
-              >
-                <X size={16} />
-              </ExitButton>
-            </Header>
-            <Content> 
-              { props.children }
-            </Content>
-          </Container>
-        </Draggable>
-      }
-    </>
+          <X size={24} />
+        </IconButton>
+      </Header>
+      <Content> 
+        { props.children }
+      </Content>
+    </Container>
   );
 }
 
